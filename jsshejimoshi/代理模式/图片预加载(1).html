@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+
+</html>
+<script type="text/javascript">
+	var myImage = (function() {
+		var imgNode = document.createElement('img');
+		document.body.appendChild(imgNode);
+		return {
+			setSrc: function(src) {
+				imgNode.src = src;
+			}
+		}
+	})();
+	myImage.setSrc('images/tupian1.jpg');//最好使用其他页面加载过来的数据
+</script>

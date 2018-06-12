@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+
+</html>
+<script type="text/javascript">
+	var MyImage = (function() {
+		var imgNode = document.createElement('img');
+		document.body.appendChild(imgNode);
+		var img = new Image;
+		img.onload = function() {
+			imgNode.src = img.src;
+		};
+		return {
+			setSrc: function(src) {
+				imgNode.src = 'images/loading.gif';
+				img.src = src;
+			}
+		}
+	})();
+	MyImage.setSrc('images/tupian1.jpg');
+</script>

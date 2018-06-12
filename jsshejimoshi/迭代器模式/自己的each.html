@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+
+</html>
+<script type="text/javascript">
+	var each = function(ary, callback) {
+		for(var i = 0, l = ary.length; i < l; i++) {
+			callback.call(ary[i], i, ary[i]); // 把下标和元素当作参数传给 callback 函数
+		}
+	};
+	each([1, 2, 3], function(i, n) {
+		alert([i, n]);
+	});
+</script>

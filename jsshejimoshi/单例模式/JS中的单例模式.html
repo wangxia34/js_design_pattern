@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+
+</html>
+<script type="text/javascript">
+	/*
+	 	JS本身并不从类中创建对象，一个全局变量就可看做是一个单例模式实例，但全局变量容易造成命名空间污染，
+	 以下是动态创建一个命名空间，来减弱全局变量的命名空间污染。
+	 */
+	var MyApp = {};
+	MyApp.namespace = function(name) {
+		var parts = name.split('.');
+		var current = MyApp;
+		for(var i in parts) {
+			if(!current[parts[i]]) {
+				current[parts[i]] = {};
+			}
+			current = current[parts[i]];
+		}
+	};
+	MyApp.namespace('event');
+	MyApp.namespace('dom.style');
+	console.dir(MyApp);
+	// 上述代码等价于：
+//	var MyApp = {
+//		event: {},
+//		dom: {
+//			style: {}
+//		}
+//	};
+</script>

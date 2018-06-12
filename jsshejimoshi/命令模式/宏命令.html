@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var closeDoorCommand = {
+            execute: function(){
+                console.log( '关门' );
+            }
+        };
+        var openPcCommand = {
+            execute: function(){
+                console.log( '开电脑' );
+            }
+        };
+        var openQQCommand = {
+            execute: function(){
+                console.log( '登录 QQ' );
+            }
+        };
+        /*接下来定义宏命令 MacroCommand ，它的结构也很简单。 macroCommand.add 方法表示把子命令添
+        加进宏命令对象，当调用宏命令对象的 execute 方法时，会迭代这一组子命令对象，并且依次执
+        行它们的 execute 方法：*/
+        var MacroCommand = function(){
+            return {
+                commandsList: [],
+                add: function( command ){
+                    this.commandsList.push( command );
+                },
+                undo: function () {//撤销功能
+
+                },
+                execute: function(){
+                    for ( var i = 0, command; command = this.commandsList[ i++ ]; ){
+                        command.execute();
+                    }
+                }
+            }
+        };
+        var macroCommand = MacroCommand();
+        macroCommand.add( closeDoorCommand );
+        macroCommand.add( openPcCommand );
+        macroCommand.add( openQQCommand );
+        macroCommand.execute();
+    </script>
+</body>
+</html>
