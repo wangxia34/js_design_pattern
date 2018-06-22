@@ -1,1 +1,4 @@
-111
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/wangxia34/js_design_pattern.git
+git push -u origin master
