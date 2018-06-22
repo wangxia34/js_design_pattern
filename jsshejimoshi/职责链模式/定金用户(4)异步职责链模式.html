@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+
+</html>
+<script type="text/javascript">
+	
+	class Chain {
+		constructor(fn) {
+			this.fn = fn;
+			this.successor = null;
+		}
+		setNextSuccessor(successor) {
+			return this.successor = successor;
+		}
+		passRequest() {
+			var ret = this.fn.apply(this, arguments);
+			if(ret === 'nextSuccessor') {
+				return this.successor && this.successor.passRequest.apply(this.successor, arguments);
+			}
+			return ret;
+		}
+		next() {
+			return this.successor && this.successor.passRequest.apply(this.successor, arguments);
+		};
+	}
+
+	var fn1 = new Chain(function() {
+		console.log(1);
+		return 'nextSuccessor';
+	});
+	var fn2 = new Chain(function() {
+		console.log(2);
+		var self = this;
+		setTimeout(function() {
+			self.next();
+		}, 1000);
+	});
+	var fn3 = new Chain(function() {
+		console.log(3);
+	});
+	
+	fn1.setNextSuccessor(fn2).setNextSuccessor(fn3);
+	fn1.passRequest();
+	
+</script>
