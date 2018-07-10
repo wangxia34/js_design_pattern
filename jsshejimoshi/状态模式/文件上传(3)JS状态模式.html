@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+
+</html>
+<script type="text/javascript">
+	/****************模拟上传插件********************************/
+	window.external.upload = function(state) {
+		console.log(state); // 可能为 sign、uploading、done、error 
+	};
+
+	/****************用于上传的插件对象*************************/
+	var plugin = (function() {
+		var plugin = document.createElement('embed');
+		plugin.style.display = 'none';
+		plugin.type = 'application/txftn-webkit';
+		plugin.sign = function() {
+			console.log('开始文件扫描');
+		}
+		plugin.pause = function() {
+			console.log('暂停文件上传');
+		};
+		plugin.uploading = function() {
+			console.log('开始文件上传');
+		};
+		plugin.del = function() {
+			console.log('删除文件上传');
+		}
+		plugin.done = function() {
+			console.log('文件上传完成');
+		}
+		document.body.appendChild(plugin);
+		return plugin;
+	})();
+
+	/****************定义一个类********************************/
+	class Upload{
+		constructor(fileName){
+			this.plugin = plugin;
+			this.fileName = fileName;
+			this.button1 = null;
+			this.button2 = null;
+			this.currState = FSM.signState; // 设置当前状态
+		}
+		
+		/****************初始化操作********************************/		
+		init(){
+			var that = this;
+			this.dom = document.createElement('div');
+			this.dom.innerHTML =
+				'<span>文件名称:' + this.fileName + '</span>'+
+				'<button data-action="button1" > 扫描中 </button>'+
+				'<button data-action="button2" > 删除 </button>';
+			document.body.appendChild(this.dom);
+			this.button1 = this.dom.querySelector('[data-action="button1"]');
+			this.button2 = this.dom.querySelector('[data-action="button2"]');
+			this.bindEvent();
+		}
+		
+		/**********绑定两个按钮的事件,将请求委托给 FSM 来实现****/
+		bindEvent(){
+			var self = this;
+			this.button1.onclick = function() {
+				self.currState.clickHandler1.call(self);
+			}
+			this.button2.onclick = function() {
+				self.currState.clickHandler2.call(self);
+			}			
+		}
+		
+		/**********状态对应的逻辑****/
+		sign() {
+			this.plugin.sign();
+			this.currState = FSM.SignState;
+		}
+		uploading() {
+			this.button1.innerHTML = '正在上传，点击暂停';
+			this.plugin.uploading();
+			this.currState = FSM.UploadingState;
+		}
+		pause() {
+			this.button1.innerHTML = '已暂停，点击继续上传';
+			this.plugin.pause();
+			this.currState = FSM.PauseState;
+		}
+		done() {
+			this.button1.innerHTML = '上传完成';
+			this.plugin.done();
+			this.currState = FSM.DoneState;
+		}
+		error() {
+			this.button1.innerHTML = '上传失败';
+			this.currState = FSM.ErrorState;
+		}
+		del() {
+			this.plugin.del();
+			this.dom.parentNode.removeChild(this.dom);
+		}
+	}
+	
+
+	/*********************各种状态的实现***********************/
+	var FSM = {
+		signState:{
+			clickHandler1: function() {
+				console.log('扫描中，点击无效...');
+			},
+			clickHandler2: function() {
+				console.log('文件正在上传中，不能删除');
+			}
+		},
+		UploadingState:{
+			clickHandler1: function() {
+				this.pause();
+			},
+			clickHandler2: function() {
+				console.log('文件正在上传中，不能删除');
+			}
+		},
+		PauseState:{
+			clickHandler1: function() {
+				this.uploading();
+			},
+			clickHandler2: function() {
+				this.del();
+			}
+		},
+		DoneState:{
+			clickHandler1: function() {
+				console.log('文件已完成上传, 点击无效');
+			},
+			clickHandler2: function() {
+				this.del();
+			}
+		},
+		ErrorState:{
+			clickHandler1: function() {
+				console.log('文件上传失败, 点击无效');
+			},
+			clickHandler2: function() {
+				this.del();
+			}
+		}
+	}
+	
+	/*****************实例测试**********************/
+	var uploadObj = new Upload('JavaScript 设计模式与开发实践');
+	uploadObj.init();
+	window.external.upload = function(state) {
+		uploadObj[state]();
+	};
+	window.external.upload('sign');
+	setTimeout(function() {
+		window.external.upload('uploading'); // 1 秒后开始上传
+	}, 1000);
+	setTimeout(function() {
+		window.external.upload('done'); // 5 秒后上传完成
+	}, 5000);
+</script>
