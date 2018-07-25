@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+    <script src="localization/messages_zh.js" type="text/javascript" charset="utf-8"></script>
+    <title></title>
+</head>
+<body>
+<form action="#" id="userForm" method="post">
+    用户名：<input type="text" name="name" id="name" required><br>
+    url：<input type="text" name="url" id="url" ><br>
+    <input type="checkbox" class="checkbox" id="newsletter" ><br>
+    email：<input type="text" name="email" id="email" ><br>
+    number：<input type="text" name="number" id="number" ><br>
+    digits：<input type="text" name="digits" id="digits" ><br>
+    minlength：<input type="text" name="minlength" id="minlength" ><br>
+    maxlength：<input type="text" name="maxlength" id="maxlength" ><br>
+    rangelength：<input type="text" name="rangelength" id="rangelength" ><br>
+    min：<input type="text" name="min" id="min" ><br>
+    max：<input type="text" name="max" id="max" ><br>
+    range：<input type="text" name="range" id="range" ><br>
+    equalTo：<input type="text" name="equalTo" id="equalTo" ><br>
+    <input type="button" id="btn" value="提交">
+</form>
+
+</body>
+</html>
+<script>
+    $(function () {
+        var $userForm = $("#userForm");
+        let validator = $userForm.validate({
+            rules: {
+                url: {
+                    required:"#newsletter:checked",
+                    url:true
+                },
+                email: {
+                    email:true
+                },
+                number: {
+                    number: true
+                },
+                digits: {
+                    digits: true
+                },
+                minlength: {
+                    minlength: 3
+                },
+                maxlength: {
+                    maxlength: 6
+                },
+                rangelength: {
+                    rangelength: [2,6]
+                },
+                min: {
+                    min: 3
+                },
+                max: {
+                    max: 6
+                },
+                range: {
+                    range: [0,10]
+                },
+                equalTo: {
+                    equalTo: "#name"
+                }
+            }
+        });
+
+        validator.showErrors({
+            "range": "I know that your firstname is Pete, Pete!"
+        });
+
+        $("#btn").click(function () {
+
+            // console.log(validator.setDefaults());
+        //
+        })
+    })
+</script>

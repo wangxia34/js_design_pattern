@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="SA_validate.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<form action="#" id="userForm" method="post">
+    用户名：<input type="text" name="name" id="name" ><br>
+    url：<input type="text" name="url" id="url" ><br>
+    <input type="checkbox" class="checkbox" id="newsletter" ><br>
+    email：<input type="text" name="email" id="email" ><br>
+    number：<input type="text" name="number" id="number" ><br>
+    digits：<input type="text" name="digits" id="digits" ><br>
+    minlength：<input type="text" name="minlength" id="minlength" ><br>
+    maxlength：<input type="text" name="maxlength" id="maxlength" ><br>
+    rangelength：<input type="text" name="rangelength" id="rangelength" ><br>
+    min：<input type="text" name="min" id="min" ><br>
+    max：<input type="text" name="max" id="max" ><br>
+    range：<input type="text" name="range" id="range" ><br>
+    equalTo：<input type="text" name="equalTo" id="equalTo" ><br>
+    isMobile：<input type="text" name="isMobile" id="isMobile" ><br>
+    <input type="button" id="btn" value="提交">
+</form>
+
+<script>
+
+    $(function () {
+
+        // $.validator.setDefaults({
+        //     success: "校验成功！"
+        // });
+
+        $.validator.methods.email = function( value, element ) {
+            return this.optional( element ) || /[a-z]+@[a-z]+\.[a-z]+/.test( value );
+        };
+
+        $.validator.addMethod("isMobile", function(value, element) {
+            return this.optional(element) || /^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/.test(value);
+        }, "请正确填写您的手机号码");
+
+        let $userForm = $("#userForm");
+        let validator = $userForm.SAvalidate({
+            rules: {
+                name:{
+                    required: true,
+                    rangelength: [1,6],
+                    stringCheck: true,
+                },
+                url: {
+                    required:false,
+                    url:true
+                },
+                email: {
+                    email:true
+                },
+                number: {
+                    number: true
+                },
+                digits: {
+                    digits: true
+                },
+                minlength: {
+                    minlength: 3
+                },
+                maxlength: {
+                    maxlength: 6
+                },
+                rangelength: {
+                    rangelength: [2,6]
+                },
+                min: {
+                    min: 3
+                },
+                max: {
+                    max: 6
+                },
+                range: {
+                    range: [0,10]
+                },
+                equalTo: {
+                    equalTo: "#name"
+                },
+                isMobile:{
+                    isMobile: true
+                }
+            },
+            messages: {
+                name: {
+                    required: "name为必填项",
+                    rangelength: "输入1到6个字符",
+                    stringCheck: "不可以输入特殊字符"
+                }
+            }
+        });
+
+
+        validator.showErrors({
+            "name": "I know that your firstname is Pete, Pete!"
+        });
+
+
+        $("#btn").click(function () {
+
+            console.log($("#name").val());
+
+            console.log(validator.isValid());
+            if(!validator.isValid()){
+
+                return false;
+            }
+
+            //ajax
+
+
+        })
+
+
+
+
+    })
+
+</script>
+</body>
+</html>

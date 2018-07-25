@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="../jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	let cl = $.Callbacks('once memory unique stopOnFalse');
+	fn1 = function (data) {
+	    console.log(data);
+	};
+	fn2 = function (data) {
+	    console.log('fn2 say:', data);
+	    return false;
+	};
+	cl.add(fn1);
+	cl.fire('Nicholas');    // Nicholas
+	// 由于我们使用memory参数，保存了执行环境，在添加新的函数时自动执行一次
+	cl.add(fn2);    // fn2 say: Nicholas
+	// 由于我们使用once参数，所以只能执行（fire）一次，此处无任何输出
+	cl.fire('Lee');
+	
+	// 后面我们假设这里没有传入once参数，每次fire都可以执行
+	
+	cl.fire('Lee');    // Lee    fn2 say: Lee
+	// 清空列表
+	cl.empty();
+	cl.add(fn2, fn1);
+	// 由于我们设置了stopOnFalse，而fn2返回了false，则后添加的fn1不会执行
+	cl.fire('Nicholas');    // fn2 say: Nicholas
+	// 上锁cl，禁用其操作，清除数据，但是我们添加了memory参数，它依然会对后续添加的执行一次
+	cl.lock();
+	// 无响应
+	cl.fire();
+	cl.add(fn2);    // fn2 say: Nicholas
+	// 禁用cl，禁止一切操作，清除数据
+	cl.disable();
+</script>

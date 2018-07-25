@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="../jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	// 我们封装Deferred产生一个promise对象，其不能被外部手动解析，只能内部确定最终状态
+	asynPromise = function () {
+	    let d = $.Deferred();
+	    (function timer() {
+	        setTimeout(function () {
+	            // 产生随机数，代替解析结果，来确定本次的状态
+	            let num = Math.random();
+	            if (num > 0.9) {
+	                d.resolve();    // 解析成功
+	            } else if (num < 0.1) {
+	                d.reject();    // 解析失败
+	            } else {
+	                d.notify();    // 解析过程中
+	            }
+	            setTimeout(timer, 1000);    // 持续不断的解析数据
+	        }, 1000);
+	    })();
+	    // 如果不返回promise对象，则可以被外部手动调整解析状态
+	    return d.promise();
+	};
+	
+	// then方法的三个参数分别代表完成、失败、过程中的回调函数
+	asynPromise().then(function () {
+	    console.log('resolve success');
+	}, function () {
+	    console.log('reject fail');
+	}, function () {
+	    console.log('notify progress');
+	});
+
+
+</script>
