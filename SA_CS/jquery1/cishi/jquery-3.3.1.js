@@ -4029,6 +4029,7 @@
 
     // Multifunctional method to get and set values of a collection
     // The value/s can optionally be executed if it's a function
+    // w*w使用过的地方【添加css样式】
     var access = function (elems, fn, key, value, chainable, emptyGet, raw) {
         var i = 0,
             len = elems.length,
@@ -5229,6 +5230,12 @@
             
         },
         
+        /*根据用户传参，找到事件队列，从里面把匹配的handleObj对象移除，在参数不足的情况下，
+        可能移除多个或所有的handleObj。当队列的长度为0（当某事件的事件处理函数数组为空时，
+        就代表此类型事件没有事件处理函数了，因此移除此事件）时，就移除相应的事件，
+        当events为空对象（events是元素绑定的所有事件类型的集合，当它为空时，就代表元素没有绑定任何事件，
+        那么就没有必要再保存元素在缓存系统的唯一标识了）时，就清除掉UUID
+        (也就是元素在缓存系统中唯一的标识)。*/
         // Detach an event or set of events from an element
         remove: function (elem, types, handler, selector, mappedTypes) {
             
@@ -5252,7 +5259,8 @@
                 namespaces = (tmp[2] || "").split(".").sort();
                 
                 // Unbind all events (on this namespace, if provided) for the element
-                //如果type不存在，那么移除所有的事件!也就是当前元素的events域中间的所有的数据!
+                // 如果type不存在，那么移除所有的事件!也就是当前元素的events域中间的所有的数据!
+                // 也就是移除所有事件类型或所有与此命名空间有关的事件类型
                 if (!type) {
                     for (type in events) {
                         jQuery.event.remove(elem, type + types[t], handler, selector, true);
@@ -5260,25 +5268,36 @@
                     continue;
                 }
                 
+                // 处理特殊的事件类型，并不是所有的事件都能直接使用，比如火狐下没有mousewheel，需要用DOMMouseScroll冒充
                 special = jQuery.event.special[type] || {};
+                
+                // 对于事件代理的绑定，需要针对不能冒泡的事件进行处理，取得真正用于绑定的事件类型
                 type = (selector ? special.delegateType : special.bindType) || type;
+    
+                // 取得此事件类型的装载事件描述对象的数组
                 handlers = events[type] || [];
                 tmp = tmp[2] &&
                     new RegExp("(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)");
                 
-                // Remove matching events
+                // 移除数组中符合条件的事件描述对象
                 origCount = j = handlers.length;
                 while (j--) {
                     handleObj = handlers[j];
                     
-                    if ((mappedTypes || origType === handleObj.origType) &&
+                    if ((mappedTypes || origType === handleObj.origType) && //比较事件类型是否一致
+                            //如果没有传入事件处理函数，或者传入了，并且guid等于事件描述对象的guid，就继续判断
                         (!handler || handler.guid === handleObj.guid) &&
+                            //如果types有命名空间，就判断他们的命名空间是否一样
                         (!tmp || tmp.test(handleObj.namespace)) &&
+                            //如果是事件代理，就判断事件代理是否一致，
                         (!selector || selector === handleObj.selector ||
                             selector === "**" && handleObj.selector)) {
+    
+                        //移除这个事件描述对象
                         handlers.splice(j, 1);
                         
                         if (handleObj.selector) {
+                            //如果是事件代理的事件描述对象被移除，就把delegateCount减一
                             handlers.delegateCount--;
                         }
                         if (special.remove) {
@@ -5286,26 +5305,31 @@
                         }
                     }
                 }
-                
-                // Remove generic event handler if we removed something and no more handlers exist
-                // (avoids potential for endless recursion during removal of special event handlers)
+    
+                // 如果事件描述对象数组为空，并且是因为上面for循环移除之后才为空的，就进入if语句。
+                // 之所以加上后面的那个判断，是因为handlers本身如果是空的，并不是通过while循环移除的，那进入到if语句，会出现死循环
                 if (origCount && !handlers.length) {
                     if (!special.teardown ||
                         special.teardown.call(elem, namespaces, elemData.handle) === false) {
                         
                         jQuery.removeEvent(elem, type, elemData.handle);
                     }
-                    
+    
+                    //删除此类型事件的属性。因此此类型事件没有事件处理函数了，被全部删除了
                     delete events[type];
                 }
             }
             
             // Remove data and the expando if it's no longer used
+            // 如果此元素的所以事件类型的属性都被删除了，那么events将是一个空对象
             if (jQuery.isEmptyObject(events)) {
+                //移除这个元素在缓存系统中的events空间
                 dataPriv.remove(elem, "handle events");
             }
         },
         
+        /*从缓存体中的events对象取得对应队列，然后修复事件对象event，传入用户的回调中执行，
+        根据回调的返回值决定是否停止循环，是否阻止默认行为和事件冒泡。*/
         dispatch: function (nativeEvent) {
             
             // Make a writable jQuery.Event from the native event object
@@ -5313,11 +5337,15 @@
             
             var i, j, ret, matched, handleObj, handlerQueue,
                 args = new Array(arguments.length),
+                // 得到缓存系统中this(操作的元素)的events对象，然后取它的事件类型（你触发的event的类型）属性对象，
+                // 这个属性对象就是装有事件描述对象的数组。
                 handlers = (dataPriv.get(this, "events") || {})[event.type] || [],
+                //解决特殊的事件类型
                 special = jQuery.event.special[event.type] || {};
             
             // Use the fix-ed jQuery.Event rather than the (read-only) native event
             args[0] = event;
+            
             
             for (i = 1; i < arguments.length; i++) {
                 args[i] = arguments[i];
@@ -5334,27 +5362,40 @@
             handlerQueue = jQuery.event.handlers.call(this, event, handlers);
             
             // Run delegates first; they may want to stop propagation beneath us
+            //遍历handlerQueue数组，条件是event没有停止冒泡。
             i = 0;
             while ((matched = handlerQueue[i++]) && !event.isPropagationStopped()) {
+    
+                // 事件冒泡到的当前目标元素。
+                // 这里的currentTarget跟原生js绑定事件的currentTarget(绑定事件的元素)不一样，
+                // 这里相当于原生的target（实际触发事件的元素）
                 event.currentTarget = matched.elem;
-                
+    
+                // 遍历当前目标元素中所有与event.type同类型的事件描述对象数组。条件是用户没有执行停止冒泡的方法。
+                // （用户调用stopImmediatePropagation方法，isImmediatePropagationStopped方法就会返回true）
                 j = 0;
                 while ((handleObj = matched.handlers[j++]) &&
                 !event.isImmediatePropagationStopped()) {
                     
-                    // Triggered event must either 1) have no namespace, or 2) have namespace(s)
-                    // a subset or equal to those in the bound event (both can have no namespace).
+                    // 触发事件必须
+                    // 1）没有命名空间
+                    // 2）具有命名空间的子集或等于绑定事件中的那些子集（两者都可以没有命名空间）。
                     if (!event.rnamespace || event.rnamespace.test(handleObj.namespace)) {
                         
-                        event.handleObj = handleObj;
+                        event.handleObj = handleObj; //把事件描述对象赋给事件的handleObj属性
                         event.data = handleObj.data;
-                        
+    
+                        // 先看此事件描述对象中的事件类型是否是特殊事件，如果是，就调用它的handle方法。
+                        // 如果不是，就直接调用事件描述对象的handler方法。执行上下文是在当前遍历的目标元素中。
                         ret = ((jQuery.event.special[handleObj.origType] || {}).handle ||
                             handleObj.handler).apply(matched.elem, args);
                         
                         if (ret !== undefined) {
+                            //如果事件处理函数执行后，返回值不是undefined，就赋给event的result属性
                             if ((event.result = ret) === false) {
+                                //阻止默认事件
                                 event.preventDefault();
+                                //停止冒泡，isPropagationStopped会返回true，这时就会停止外层循环
                                 event.stopPropagation();
                             }
                         }
@@ -5382,37 +5423,50 @@
                 // Support: IE <=9
                 // Black-hole SVG <use> instance trees (trac-13180)
                 cur.nodeType &&
-                
-                // Support: Firefox <=42
-                // Suppress spec-violating clicks indicating a non-primary pointer button (trac-3861)
-                // https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
-                // Support: IE 11 only
-                // ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
+    
+                // 这里先讲一下event.button这个属性，这个属性，代表用户点击了鼠标的左键还是右键，还是滚动条，等等。
+                // IE与标准浏览器的值不一样，比如,左键IE下是1，而其他浏览器是0等。
+                // 但是在上面的代码中已经修复了event对象，因此IE下，点击左键也就是0.
+                // 因此上面的if语句的意思是：如果有事件代理，并且是左键点击（event.button=0），就进入if语句。
                 !(event.type === "click" && event.button >= 1)) {
-                
+    
+                //从事件源开始，遍历其所有的祖先，一直到绑定事件的元素
                 for (; cur !== this; cur = cur.parentNode || this) {
                     
                     // Don't check non-elements (#13208)
                     // Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
+                    //如果元素是被禁止的，并且事件类型是click，就不进入if语句。意思就是不能在被禁止的元素上触发click事件
                     if (cur.nodeType === 1 && !(event.type === "click" && cur.disabled === true)) {
                         matchedHandlers = [];
                         matchedSelectors = {};
+                        
+                        //使用事件代理的事件描述对象总是排在数组前面
                         for (i = 0; i < delegateCount; i++) {
                             handleObj = handlers[i];
                             
                             // Don't conflict with Object.prototype properties (#13203)
+                            //获取这个事件描述对象的执行上下文
                             sel = handleObj.selector + " ";
-                            
+    
+                            //第一次时，matchedSelectors[sel]是undefined
                             if (matchedSelectors[sel] === undefined) {
+    
+                                // sel,当前事件描述对象的执行上下文，this事件触发的元素，cur当前遍历的元素。
+                                // 如果cur当前遍历的元素匹配，就为真，不匹配就为假
                                 matchedSelectors[sel] = handleObj.needsContext ?
                                     jQuery(sel, this).index(cur) > -1 :
                                     jQuery.find(sel, this, null, [cur]).length;
                             }
+    
+                            // 如果当前元素在事件描述对象中匹配
                             if (matchedSelectors[sel]) {
+                                // 就把这个事件描述对象收集起来。
+                                // 有多少元素在事件描述对象数组中匹配，就收集多少个事件描述对象。
                                 matchedHandlers.push(handleObj);
                             }
                         }
                         if (matchedHandlers.length) {
+                            //如果当前遍历的元素，匹配事件描述对象数组中的一个或以上。就把这些组装成一个json对象存储起来。
                             handlerQueue.push({elem: cur, handlers: matchedHandlers});
                         }
                     }
@@ -5420,6 +5474,7 @@
             }
             
             // Add the remaining (directly-bound) handlers
+            // 如果有不是事件代理的事件描述对象，将把这些事件描述对象与绑定事件的元素组装成json，存储起来
             cur = this;
             if (delegateCount < handlers.length) {
                 handlerQueue.push({elem: cur, handlers: handlers.slice(delegateCount)});
@@ -5463,11 +5518,13 @@
         },
         
         special: {
+            
             load: {
                 
                 // Prevent triggered image.load events from bubbling to window.load
                 noBubble: true
             },
+            
             focus: {
                 
                 // Fire native event if possible so blur/focus sequence is correct
@@ -5479,6 +5536,7 @@
                 },
                 delegateType: "focusin"
             },
+            
             blur: {
                 trigger: function () {
                     if (this === safeActiveElement() && this.blur) {
@@ -5488,6 +5546,7 @@
                 },
                 delegateType: "focusout"
             },
+            
             click: {
                 
                 // For checkbox, fire native event so checked state will be right
@@ -5539,6 +5598,7 @@
             
             // Events bubbling up the document may have been marked as prevented
             // by a handler lower down the tree; reflect the correct value.
+            // 冒泡事件可能陪tree处理程序阻止，返回正确的值
             this.isDefaultPrevented = src.defaultPrevented ||
             src.defaultPrevented === undefined &&
             
@@ -5574,15 +5634,16 @@
         this[jQuery.expando] = true;
     };
 
-// jQuery.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
-// https://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
+    // jQuery.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
+    // https://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
     jQuery.Event.prototype = {
         constructor: jQuery.Event,
         isDefaultPrevented: returnFalse,
         isPropagationStopped: returnFalse,
         isImmediatePropagationStopped: returnFalse,
         isSimulated: false,
-        
+    
+        // 阻止元素发生默认的行为。
         preventDefault: function () {
             var e = this.originalEvent;
             
@@ -5592,6 +5653,8 @@
                 e.preventDefault();
             }
         },
+    
+        // 阻止事件冒泡到父元素，阻止任何父事件处理程序被执行。
         stopPropagation: function () {
             var e = this.originalEvent;
             
@@ -5601,6 +5664,8 @@
                 e.stopPropagation();
             }
         },
+    
+        // 阻止剩下的事件处理程序被执行。
         stopImmediatePropagation: function () {
             var e = this.originalEvent;
             
@@ -5614,38 +5679,39 @@
         }
     };
 
-// Includes all common event props including KeyEvent and MouseEvent specific props
+    // 包括所有常见事件道具，包括键事件和鼠标事件专用道具
     jQuery.each({
-        altKey: true,
-        bubbles: true,
-        cancelable: true,
+        altKey: true, // 当事件被触发时，alt键是否被按下
+        bubbles: true,// 事件是否是起泡事件类型
+        cancelable: true, // 是否可以取消默认动作
         changedTouches: true,
-        ctrlKey: true,
+        ctrlKey: true,// 事件触发时，ctrKey是否被按下
         detail: true,
-        eventPhase: true,
+        eventPhase: true, // 事件传播的当前阶段
         metaKey: true,
-        pageX: true,
-        pageY: true,
-        shiftKey: true,
+        pageX: true,// 距离文档左边缘的鼠标位置
+        pageY: true,// 距离文档上边缘的鼠标位置
+        shiftKey: true,// 当事件触发时，shiftKey是否被按下
         view: true,
         "char": true,
         charCode: true,
         key: true,
         keyCode: true,
-        button: true,
+        button: true,// 事件触发时，哪个鼠标按钮被按下了
         buttons: true,
-        clientX: true,
-        clientY: true,
-        offsetX: true,
-        offsetY: true,
+        clientX: true,// 事件触发时鼠标指针的横坐标
+        clientY: true, // 事件触发时鼠标指针的纵坐标
+        offsetX: true,// 发生时间的地点在事件触发元素中的横坐标
+        offsetY: true, // 发生时间的地点在事件触发元素中的纵坐标
         pointerId: true,
         pointerType: true,
-        screenX: true,
-        screenY: true,
+        screenX: true,// 以屏幕为基准的鼠标的横坐标
+        screenY: true,// 以屏幕为基准的鼠标的纵坐标
         targetTouches: true,
         toElement: true,
         touches: true,
-        
+    
+        // 按了哪个键或者按钮
         which: function (event) {
             var button = event.button;
             
@@ -5673,16 +5739,17 @@
             
             return event.which;
         }
+        
     }, jQuery.event.addProp);
 
-// Create mouseenter/leave events using mouseover/out and event-time checks
-// so that event delegation works in jQuery.
-// Do the same for pointerenter/pointerleave and pointerover/pointerout
-//
-// Support: Safari 7 only
-// Safari sends mouseenter too often; see:
-// https://bugs.chromium.org/p/chromium/issues/detail?id=470258
-// for the description of the bug (it existed in older Chrome versions as well).
+    // Create mouseenter/leave events using mouseover/out and event-time checks
+    // so that event delegation works in jQuery.
+    // Do the same for pointerenter/pointerleave and pointerover/pointerout
+    //
+    // Support: Safari 7 only
+    // Safari sends mouseenter too often; see:
+    // https://bugs.chromium.org/p/chromium/issues/detail?id=470258
+    // for the description of the bug (it existed in older Chrome versions as well).
     jQuery.each({
         mouseenter: "mouseover",
         mouseleave: "mouseout",
@@ -5712,13 +5779,18 @@
     });
     
     jQuery.fn.extend({
-        
+    
+        // 在被选元素及子元素上添加一个或多个事件处理程序。
         on: function (types, selector, data, fn) {
             return on(this, types, selector, data, fn);
         },
+    
+        // 向被选元素添加一个或多个事件处理程序。该处理程序只能被每个元素触发一次
         one: function (types, selector, data, fn) {
             return on(this, types, selector, data, fn, 1);
         },
+    
+        // 移除通过 on() 方法添加的事件处理程序
         off: function (types, selector, fn) {
             var handleObj, type;
             if (types && types.preventDefault && types.handleObj) {
@@ -5776,7 +5848,7 @@
         rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
         rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
 
-// Prefer a tbody over its parent table for containing new rows
+    // Prefer a tbody over its parent table for containing new rows
     function manipulationTarget(elem, content) {
         if (nodeName(elem, "table") &&
             nodeName(content.nodeType !== 11 ? content : content.firstChild, "tr")) {
@@ -5787,7 +5859,7 @@
         return elem;
     }
 
-// Replace/restore the type attribute of script elements for safe DOM manipulation
+    // Replace/restore the type attribute of script elements for safe DOM manipulation
     function disableScript(elem) {
         elem.type = (elem.getAttribute("type") !== null) + "/" + elem.type;
         return elem;
@@ -5837,7 +5909,7 @@
         }
     }
 
-// Fix IE bugs, see support tests
+    // Fix IE bugs, see support tests
     function fixInput(src, dest) {
         var nodeName = dest.nodeName.toLowerCase();
         
@@ -6608,7 +6680,7 @@
         // setting or getting the value
         cssProps: {},
         
-        // Get and set the style property on a DOM Node
+        // 获取并设置 DOM 节点的样式属性
         style: function (elem, name, value, extra) {
             
             // Don't set styles on text and comment nodes
@@ -6684,6 +6756,7 @@
             }
         },
         
+        // 添加 css 样式
         css: function (elem, name, extra, styles) {
             var val, num, hooks,
                 origName = camelCase(name),
@@ -6825,6 +6898,8 @@
     });
     
     jQuery.fn.extend({
+        
+        //设置 css 样式
         css: function (name, value) {
             return access(this, function (elem, name, value) {
                 var styles, len,
@@ -6941,8 +7016,8 @@
         }
     };
 
-// Support: IE <=9 only
-// Panic based approach to setting things on disconnected nodes
+    // Support: IE <=9 only
+    // Panic based approach to setting things on disconnected nodes
     Tween.propHooks.scrollTop = Tween.propHooks.scrollLeft = {
         set: function (tween) {
             if (tween.elem.nodeType && tween.elem.parentNode) {
@@ -6963,7 +7038,7 @@
     
     jQuery.fx = Tween.prototype.init;
 
-// Back compat <1.8 extension point
+    // Back compat <1.8 extension point
     jQuery.fx.step = {};
     
     
@@ -6984,7 +7059,7 @@
         }
     }
 
-// Animations created synchronously will run synchronously
+    // Animations created synchronously will run synchronously
     function createFxNow() {
         window.setTimeout(function () {
             fxNow = undefined;
@@ -6992,7 +7067,7 @@
         return (fxNow = Date.now());
     }
 
-// Generate parameters to create a standard animation
+    // Generate parameters to create a standard animation
     function genFx(type, includeWidth) {
         var which,
             i = 0,
@@ -7446,14 +7521,18 @@
     };
     
     jQuery.fn.extend({
+    
+        // 将被选元素的不透明度逐渐地改变为指定的值。
         fadeTo: function (speed, to, easing, callback) {
             
-            // Show any hidden elements after setting opacity to 0
+            // 在设置不透明度为0之后显示 隐藏元素
             return this.filter(isHiddenWithinTree).css("opacity", 0).show()
             
-            // Animate to the value specified
+            // 添加动画效果到指定值
                 .end().animate({opacity: to}, speed, easing, callback);
         },
+    
+        // 执行 CSS 属性集的自定义动画。
         animate: function (prop, speed, easing, callback) {
             var empty = jQuery.isEmptyObject(prop),
                 optall = jQuery.speed(speed, easing, callback),
@@ -7473,6 +7552,8 @@
                 this.each(doAnimation) :
                 this.queue(optall.queue, doAnimation);
         },
+    
+        // 停止在被选元素上运行动画
         stop: function (type, clearQueue, gotoEnd) {
             var stopQueue = function (hooks) {
                 var stop = hooks.stop;
@@ -7525,6 +7606,8 @@
                 }
             });
         },
+    
+        // 停止当前运行的动画，移除所有排队的动画，并为被选元素完成所有动画。
         finish: function (type) {
             if (type !== false) {
                 type = type || "fx";
@@ -7577,7 +7660,7 @@
         };
     });
 
-// Generate shortcuts for custom animations
+    // Generate shortcuts for custom animations
     jQuery.each({
         slideDown: genFx("show"),
         slideUp: genFx("hide"),
@@ -7642,8 +7725,9 @@
     };
 
 
-// Based off of the plugin by Clint Helfers, with permission.
-// https://web.archive.org/web/20100324014747/http://blindsignals.com/index.php/2009/07/jquery-delay/
+    // Based off of the plugin by Clint Helfers, with permission.
+    // https://web.archive.org/web/20100324014747/http://blindsignals.com/index.php/2009/07/jquery-delay/
+    // 对队列中的下一项的执行设置延迟。
     jQuery.fn.delay = function (time, type) {
         time = jQuery.fx ? jQuery.fx.speeds[time] || time : time;
         type = type || "fx";
@@ -7685,10 +7769,13 @@
         attrHandle = jQuery.expr.attrHandle;
     
     jQuery.fn.extend({
+        
+        // 设置/获取 html 标签的属性
         attr: function (name, value) {
             return access(this, jQuery.attr, name, value, arguments.length > 1);
         },
         
+        // 移除 attr() 设置的属性
         removeAttr: function (name) {
             return this.each(function () {
                 jQuery.removeAttr(this, name);
@@ -7697,6 +7784,8 @@
     });
     
     jQuery.extend({
+    
+        // 设置/获取 html 标签的属性
         attr: function (elem, name, value) {
             var ret, hooks,
                 nType = elem.nodeType;
@@ -7758,7 +7847,8 @@
                 }
             }
         },
-        
+    
+        // 移除 attr() 设置的属性
         removeAttr: function (elem, value) {
             var name,
                 i = 0,
@@ -7775,7 +7865,7 @@
         }
     });
 
-// Hooks for boolean attributes
+    // Hooks for boolean attributes
     boolHook = {
         set: function (elem, value, name) {
             if (value === false) {
@@ -7815,10 +7905,13 @@
         rclickable = /^(?:a|area)$/i;
     
     jQuery.fn.extend({
+        
+        // 用来设置 属性值为 Boolean 值的属性
         prop: function (name, value) {
             return access(this, jQuery.prop, name, value, arguments.length > 1);
         },
-        
+    
+        // 移除 prop() 设置的属性
         removeProp: function (name) {
             return this.each(function () {
                 delete this[jQuery.propFix[name] || name];
@@ -7827,6 +7920,8 @@
     });
     
     jQuery.extend({
+    
+        // 用来设置 属性值为 Boolean 值的属性
         prop: function (elem, name, value) {
             var ret, hooks,
                 nType = elem.nodeType;
@@ -7893,14 +7988,14 @@
         }
     });
 
-// Support: IE <=11 only
-// Accessing the selectedIndex property
-// forces the browser to respect setting selected
-// on the option
-// The getter ensures a default option is selected
-// when in an optgroup
-// eslint rule "no-unused-expressions" is disabled for this code
-// since it considers such accessions noop
+    // Support: IE <=11 only
+    // Accessing the selectedIndex property
+    // forces the browser to respect setting selected
+    // on the option
+    // The getter ensures a default option is selected
+    // when in an optgroup
+    // eslint rule "no-unused-expressions" is disabled for this code
+    // since it considers such accessions noop
     if (!support.optSelected) {
         jQuery.propHooks.selected = {
             get: function (elem) {
@@ -7968,6 +8063,8 @@
     }
     
     jQuery.fn.extend({
+    
+        // 向被选元素添加一个或多个类。
         addClass: function (value) {
             var classes, elem, cur, curValue, clazz, j, finalValue,
                 i = 0;
@@ -8004,7 +8101,8 @@
             
             return this;
         },
-        
+    
+        // 向被选元素移除一个或多个类。
         removeClass: function (value) {
             var classes, elem, cur, curValue, clazz, j, finalValue,
                 i = 0;
@@ -8050,6 +8148,7 @@
             return this;
         },
         
+        // 设置或移除被选元素的一个或多个类进行切换。
         toggleClass: function (value, stateVal) {
             var type = typeof value,
                 isValidValue = type === "string" || Array.isArray(value);
@@ -8110,7 +8209,8 @@
                 }
             });
         },
-        
+    
+        // 检查匹配的元素是否拥有指定的类。
         hasClass: function (selector) {
             var className, elem,
                 i = 0;
@@ -8131,6 +8231,8 @@
     var rreturn = /\r/g;
     
     jQuery.fn.extend({
+    
+        // 设置或返回匹配元素的值。
         val: function (value) {
             var hooks, ret, valueIsFunction,
                 elem = this[0];
@@ -8290,7 +8392,7 @@
         }
     });
 
-// Radios and checkboxes getter/setter
+    // Radios and checkboxes getter/setter
     jQuery.each(["radio", "checkbox"], function () {
         jQuery.valHooks[this] = {
             set: function (elem, value) {
@@ -8307,7 +8409,7 @@
     });
 
 
-// Return jQuery for attributes-only inclusion
+    // Return jQuery for attributes-only inclusion
     
     
     support.focusin = "onfocusin" in window;
@@ -8319,7 +8421,8 @@
         };
     
     jQuery.extend(jQuery.event, {
-        
+    
+        // 触发被选元素的指定事件类型。
         trigger: function (event, data, elem, onlyHandlers) {
             
             var i, cur, tmp, bubbleType, ontype, handle, special, lastElement,
@@ -8330,6 +8433,7 @@
             cur = lastElement = tmp = elem = elem || document;
             
             // Don't do events on text and comment nodes
+            // 触发的元素节点不能是文本节点和注释节点
             if (elem.nodeType === 3 || elem.nodeType === 8) {
                 return;
             }
@@ -8338,7 +8442,8 @@
             if (rfocusMorph.test(type + jQuery.event.triggered)) {
                 return;
             }
-            
+    
+            //如果事件类型带点号，就代表有命名空间，所以需要分解出命名空间
             if (type.indexOf(".") > -1) {
                 
                 // Namespaced trigger; create a regexp to match event type in handle()
@@ -8346,6 +8451,8 @@
                 type = namespaces.shift();
                 namespaces.sort();
             }
+    
+            //如果事件类型没有:字符，就证明是ontype绑定事件
             ontype = type.indexOf(":") < 0 && "on" + type;
             
             // Caller can pass in a jQuery.Event object, Object, or just an event type string
@@ -8367,36 +8474,50 @@
             }
             
             // Clone any incoming data and prepend the event, creating the handler arg list
+            // 如果传入了参数，就把参数转换成数组类型
             data = data == null ?
                 [event] :
                 jQuery.makeArray(data, [event]);
             
             // Allow special events to draw outside the lines
+            //事件类型是否需要进行特殊化处理，比如：mousescroll事件
             special = jQuery.event.special[type] || {};
+    
+            //如果事件类型已经有trigger方法，就调用它，如果返回结果是false，就直接返回。
             if (!onlyHandlers && special.trigger && special.trigger.apply(elem, data) === false) {
                 return;
             }
             
             // Determine event propagation path in advance, per W3C events spec (#9951)
             // Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
+            //如果元素的事件类型没有阻止冒泡，并且元素不是window对象，就要进行冒泡模拟。
             if (!onlyHandlers && !special.noBubble && !isWindow(elem)) {
-                
+    
+                //得到事件的类型
                 bubbleType = special.delegateType || type;
                 if (!rfocusMorph.test(bubbleType + type)) {
                     cur = cur.parentNode;
                 }
+    
+                // 把当前元素的所有父元素，都进行一次事件类型的冒泡。
+                // 假设div1（当前元素，触发click事件）上面有一个div2，div2上面有body，body上面有html，
+                // html上面有document。那么eventPath的数组是：
+                // [[div1,click],[div2,click],[body,click],[html,click],[document,click]]
                 for (; cur; cur = cur.parentNode) {
                     eventPath.push(cur);
                     tmp = cur;
                 }
                 
                 // Only add window if we got to document (e.g., not plain obj or detached DOM)
+                // 当old为document时，cur为空，就退出循环
                 if (tmp === (elem.ownerDocument || document)) {
+                    //模拟冒泡到window对象
                     eventPath.push(tmp.defaultView || tmp.parentWindow || window);
                 }
             }
             
             // Fire handlers on the event path
+            // 沿着上面规划好的冒泡路线，把经过的元素节点的指定类型事件的回调逐一触发执行
             i = 0;
             while ((cur = eventPath[i++]) && !event.isPropagationStopped()) {
                 lastElement = cur;
@@ -8405,14 +8526,21 @@
                     special.bindType || type;
                 
                 // jQuery handler
+                // 先判断在缓存系统中是否有此元素绑定的此事件类型的回调方法，如果有，就取出来。
                 handle = (dataPriv.get(cur, "events") || {})[event.type] &&
                     dataPriv.get(cur, "handle");
+    
+                //执行这些回调方法
                 if (handle) {
                     handle.apply(cur, data);
                 }
                 
                 // Native handler
+                // 如果有onXXX绑定的回调，无论是写在js中，还是html标签内，都会取到
                 handle = ontype && cur[ontype];
+    
+                // 如果handle不为空，并且当前元素能绑定数据，并且handle有apply方法，
+                // 就执行handle回调方法，如果当前回调返回false，就阻止默认事件。
                 if (handle && handle.apply && acceptData(cur)) {
                     event.result = handle.apply(cur, data);
                     if (event.result === false) {
@@ -8423,37 +8551,49 @@
             event.type = type;
             
             // If nobody prevented the default action, do it now
+    
+            // 如果没有执行preventDefault方法，或上面的handle方法返回false（也会阻止默认事件）。
+            // 就模拟默认行为。具体是指模拟：submit，blur，focus，select，reset，scroll等方法。
             if (!onlyHandlers && !event.isDefaultPrevented()) {
-                
+    
+                // 如果用户指定了默认行为，就执行指定的默认行为，如果指定的默认行为返回false，就继续判断下面的条件
                 if ((!special._default ||
                         special._default.apply(eventPath.pop(), data) === false) &&
+    
+                    //如果当前元素可以绑定数据
                     acceptData(elem)) {
                     
                     // Call a native DOM method on the target with the same name as the event.
                     // Don't do default actions on window, that's where global variables be (#6170)
+                    // 不是window元素就进入if语句执行默认行为。（window的默认行为触发，会出现问题，
+                    // 比如：window.scroll方法，在IE与标准浏览器存在差异，IE会默认scroll()方法为scroll(0,0)）
                     if (ontype && isFunction(elem[type]) && !isWindow(elem)) {
                         
                         // Don't re-trigger an onFOO event when we call its FOO() method
                         tmp = elem[ontype];
                         
                         if (tmp) {
+                            //onXXX的回调已经执行过了，就不用再次执行了
                             elem[ontype] = null;
                         }
                         
                         // Prevent re-triggering of the same event, since we already bubbled it above
+                        //标识正在触发此事件类型，防止下面的elem [ type ] ()重复执行dispatch方法
                         jQuery.event.triggered = type;
                         
                         if (event.isPropagationStopped()) {
                             lastElement.addEventListener(type, stopPropagationCallback);
                         }
-                        
+    
+                        // 执行默认行为，比如:input[submit](),input元素的提交方法。
+                        // 点击类型为submint的input，会默认执行submit属性方法。但是这里不会调用dispatch方法。　　
                         elem[type]();
                         
                         if (event.isPropagationStopped()) {
                             lastElement.removeEventListener(type, stopPropagationCallback);
                         }
                         
-                        jQuery.event.triggered = undefined;
+                        jQuery.event.triggered = undefined;//还原
                         
                         if (tmp) {
                             elem[ontype] = tmp;
@@ -8468,6 +8608,8 @@
         // Piggyback on a donor event to simulate a different one
         // Used only for `focus(in | out)` events
         simulate: function (type, elem, event) {
+            
+            // 重写事件
             var e = jQuery.extend(
                 new jQuery.Event(),
                 event,
@@ -8476,19 +8618,24 @@
                     isSimulated: true
                 }
             );
-            
+    
+            // 利用jQuery.event.trigger模拟触发事件
             jQuery.event.trigger(e, null, elem);
         }
         
     });
     
     jQuery.fn.extend({
-        
+    
+        // 触发被选元素的指定事件类型。
         trigger: function (type, data) {
             return this.each(function () {
                 jQuery.event.trigger(type, data, this);
             });
         },
+    
+        // 触发被选元素的指定事件类型。但不会执行浏览器默认动作，也不会产生事件冒泡。
+        // 只会影响第一个匹配元素
         triggerHandler: function (type, data) {
             var elem = this[0];
             if (elem) {
@@ -8498,14 +8645,14 @@
     });
 
 
-// Support: Firefox <=44
-// Firefox doesn't have focus(in | out) events
-// Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
-//
-// Support: Chrome <=48 - 49, Safari <=9.0 - 9.1
-// focus(in | out) events fire after focus & blur events,
-// which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
-// Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
+    // Support: Firefox <=44
+    // Firefox doesn't have focus(in | out) events
+    // Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
+    //
+    // Support: Chrome <=48 - 49, Safari <=9.0 - 9.1
+    // focus(in | out) events fire after focus & blur events,
+    // which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
+    // Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
     if (!support.focusin) {
         jQuery.each({focus: "focusin", blur: "focusout"}, function (orig, fix) {
             
@@ -8544,9 +8691,8 @@
     var nonce = Date.now();
     
     var rquery = (/\?/);
-
-
-// Cross-browser xml parsing
+    
+    // Cross-browser xml parsing
     jQuery.parseXML = function (data) {
         var xml;
         if (!data || typeof data !== "string") {
@@ -8612,8 +8758,9 @@
         }
     }
 
-// Serialize an array of form elements or a set of
-// key/values into a query string
+    // Serialize an array of form elements or a set of
+    // key/values into a query string
+    // 序列化
     jQuery.param = function (a, traditional) {
         var prefix,
             s = [],
@@ -8650,9 +8797,13 @@
     };
     
     jQuery.fn.extend({
+        
+        // 通过序列化表单值创建 URL 编码文本字符串。
         serialize: function () {
             return jQuery.param(this.serializeArray());
         },
+    
+        // 通过序列化表单值来创建对象（name 和 value）的数组。
         serializeArray: function () {
             return this.map(function () {
                 
@@ -8699,21 +8850,21 @@
         rprotocol = /^\/\//,
         
         /* Prefilters
-	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
-	 * 2) These are called:
-	 *    - BEFORE asking for a transport
-	 *    - AFTER param serialization (s.data is a string if s.processData is true)
-	 * 3) key is the dataType
-	 * 4) the catchall symbol "*" can be used
-	 * 5) execution will start with transport dataType and THEN continue down to "*" if needed
-	 */
+         * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
+         * 2) These are called:
+         *    - BEFORE asking for a transport
+         *    - AFTER param serialization (s.data is a string if s.processData is true)
+         * 3) key is the dataType
+         * 4) the catchall symbol "*" can be used
+         * 5) execution will start with transport dataType and THEN continue down to "*" if needed
+         */
         prefilters = {},
         
         /* Transports bindings
-	 * 1) key is the dataType
-	 * 2) the catchall symbol "*" can be used
-	 * 3) selection will start with transport dataType and THEN go to "*" if needed
-	 */
+         * 1) key is the dataType
+         * 2) the catchall symbol "*" can be used
+         * 3) selection will start with transport dataType and THEN go to "*" if needed
+         */
         transports = {},
         
         // Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
@@ -8723,7 +8874,7 @@
         originAnchor = document.createElement("a");
     originAnchor.href = location.href;
 
-// Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
+    // Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
     function addToPrefiltersOrTransports(structure) {
         
         // dataTypeExpression is optional and defaults to "*"
@@ -8757,7 +8908,7 @@
         };
     }
 
-// Base inspection function for prefilters and transports
+    // Base inspection function for prefilters and transports
     function inspectPrefiltersOrTransports(structure, options, originalOptions, jqXHR) {
         
         var inspected = {},
@@ -8784,9 +8935,9 @@
         return inspect(options.dataTypes[0]) || !inspected["*"] && inspect("*");
     }
 
-// A special extend for ajax options
-// that takes "flat" options (not to be deep extended)
-// Fixes #9887
+    // A special extend for ajax options
+    // that takes "flat" options (not to be deep extended)
+    // Fixes #9887
     function ajaxExtend(target, src) {
         var key, deep,
             flatOptions = jQuery.ajaxSettings.flatOptions || {};
@@ -8804,9 +8955,9 @@
     }
     
     /* Handles responses to an ajax request:
- * - finds the right dataType (mediates between content-type and expected dataType)
- * - returns the corresponding response
- */
+     * - finds the right dataType (mediates between content-type and expected dataType)
+     * - returns the corresponding response
+     */
     function ajaxHandleResponses(s, jqXHR, responses) {
         
         var ct, type, finalDataType, firstDataType,
@@ -8863,8 +9014,8 @@
     }
     
     /* Chain conversions given the request and the original response
- * Also sets the responseXXX fields on the jqXHR instance
- */
+     * Also sets the responseXXX fields on the jqXHR instance
+     */
     function ajaxConvert(s, response, jqXHR, isSuccess) {
         var conv2, current, conv, tmp, prev,
             converters = {},
@@ -8980,16 +9131,16 @@
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             
             /*
-		timeout: 0,
-		data: null,
-		dataType: null,
-		username: null,
-		password: null,
-		cache: null,
-		throws: false,
-		traditional: false,
-		headers: {},
-		*/
+            timeout: 0,
+            data: null,
+            dataType: null,
+            username: null,
+            password: null,
+            cache: null,
+            throws: false,
+            traditional: false,
+            headers: {},
+            */
             
             accepts: {
                 "*": allTypes,
@@ -9540,6 +9691,8 @@
     
     
     jQuery.fn.extend({
+    
+        // 在指定的 HTML 内容或元素中放置所有被选的元素。
         wrapAll: function (html) {
             var wrap;
             
@@ -9568,7 +9721,8 @@
             
             return this;
         },
-        
+    
+        // 使用指定的 HTML 元素来包裹每个被选元素中的所有内容（innerHTML）。
         wrapInner: function (html) {
             if (isFunction(html)) {
                 return this.each(function (i) {
@@ -9588,7 +9742,8 @@
                 }
             });
         },
-        
+    
+        // 使用指定的 HTML 元素来包裹每个被选元素。
         wrap: function (html) {
             var htmlIsFunction = isFunction(html);
             
@@ -9597,6 +9752,7 @@
             });
         },
         
+        // 移除被选元素的父元素。
         unwrap: function (selector) {
             this.parent(selector).not("body").each(function () {
                 jQuery(this).replaceWith(this.childNodes);
@@ -9776,14 +9932,14 @@
     });
 
 
-// Prevent auto-execution of scripts when no explicit dataType was provided (See gh-2432)
+    // Prevent auto-execution of scripts when no explicit dataType was provided (See gh-2432)
     jQuery.ajaxPrefilter(function (s) {
         if (s.crossDomain) {
             s.contents.script = false;
         }
     });
 
-// Install script dataType
+    // Install script dataType
     jQuery.ajaxSetup({
         accepts: {
             script: "text/javascript, application/javascript, " +
@@ -9800,7 +9956,7 @@
         }
     });
 
-// Handle cache's special case and crossDomain
+    // Handle cache's special case and crossDomain
     jQuery.ajaxPrefilter("script", function (s) {
         if (s.cache === undefined) {
             s.cache = false;
@@ -9810,7 +9966,7 @@
         }
     });
 
-// Bind script tag hack transport
+    // Bind script tag hack transport
     jQuery.ajaxTransport("script", function (s) {
         
         // This transport only deals with cross domain requests
@@ -9848,7 +10004,7 @@
     var oldCallbacks = [],
         rjsonp = /(=)\?(?=&|$)|\?\?/;
 
-// Default jsonp settings
+    // Default jsonp settings
     jQuery.ajaxSetup({
         jsonp: "callback",
         jsonpCallback: function () {
@@ -9858,7 +10014,7 @@
         }
     });
 
-// Detect, normalize options and install callbacks for jsonp requests
+    // Detect, normalize options and install callbacks for jsonp requests
     jQuery.ajaxPrefilter("json jsonp", function (s, originalSettings, jqXHR) {
         
         var callbackName, overwritten, responseContainer,
@@ -9938,11 +10094,11 @@
     });
 
 
-// Support: Safari 8 only
-// In Safari 8 documents created via document.implementation.createHTMLDocument
-// collapse sibling forms: the second one becomes a child of the first one.
-// Because of that, this security measure has to be disabled in Safari 8.
-// https://bugs.webkit.org/show_bug.cgi?id=137337
+    // Support: Safari 8 only
+    // In Safari 8 documents created via document.implementation.createHTMLDocument
+    // collapse sibling forms: the second one becomes a child of the first one.
+    // Because of that, this security measure has to be disabled in Safari 8.
+    // https://bugs.webkit.org/show_bug.cgi?id=137337
     support.createHTMLDocument = (function () {
         var body = document.implementation.createHTMLDocument("").body;
         body.innerHTML = "<form></form><form></form>";
@@ -9950,10 +10106,11 @@
     })();
 
 
-// Argument "data" should be string of html
-// context (optional): If specified, the fragment will be created in this context,
-// defaults to document
-// keepScripts (optional): If true, will include scripts passed in the html string
+    // Argument "data" should be string of html
+    // context (optional): If specified, the fragment will be created in this context,
+    // defaults to document
+    // keepScripts (optional): If true, will include scripts passed in the html string
+    // 用于将HTML字符串解析为对应的DOM节点数组。
     jQuery.parseHTML = function (data, context, keepScripts) {
         if (typeof data !== "string") {
             return [];
@@ -10142,6 +10299,7 @@
     jQuery.fn.extend({
         
         // offset() relates an element's border box to the document origin
+        // 返回或设置匹配元素相对于文档的偏移（位置）。
         offset: function (options) {
             
             // Preserve chaining for setter
@@ -10179,6 +10337,7 @@
         
         // position() relates an element's margin box to its offset parent's padding box
         // This corresponds to the behavior of CSS absolute positioning
+        // 返回匹配元素相对于父元素的位置（偏移）。
         position: function () {
             if (!this[0]) {
                 return;
@@ -10233,6 +10392,7 @@
         // and might be considered as more preferable results.
         //
         // This logic, however, is not guaranteed and can change at any point in the future
+        // 返回最近的祖先定位元素。
         offsetParent: function () {
             return this.map(function () {
                 var offsetParent = this.offsetParent;
@@ -10246,7 +10406,7 @@
         }
     });
 
-// Create scrollLeft and scrollTop methods
+    // Create scrollLeft and scrollTop methods
     jQuery.each({scrollLeft: "pageXOffset", scrollTop: "pageYOffset"}, function (method, prop) {
         var top = "pageYOffset" === prop;
         
@@ -10278,12 +10438,12 @@
         };
     });
 
-// Support: Safari <=7 - 9.1, Chrome <=37 - 49
-// Add the top/left cssHooks using jQuery.fn.position
-// Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
-// Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347
-// getComputedStyle returns percent when specified for top/left/bottom/right;
-// rather than make the css module depend on the offset module, just check for it here
+    // Support: Safari <=7 - 9.1, Chrome <=37 - 49
+    // Add the top/left cssHooks using jQuery.fn.position
+    // Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
+    // Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347
+    // getComputedStyle returns percent when specified for top/left/bottom/right;
+    // rather than make the css module depend on the offset module, just check for it here
     jQuery.each(["top", "left"], function (i, prop) {
         jQuery.cssHooks[prop] = addGetHookIf(support.pixelPosition,
             function (elem, computed) {
@@ -10300,7 +10460,7 @@
     });
 
 
-// Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
+    // Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
     jQuery.each({Height: "height", Width: "width"}, function (name, type) {
         jQuery.each({padding: "inner" + name, content: type, "": "outer" + name},
             function (defaultExtra, funcName) {
@@ -10361,6 +10521,9 @@
         });
     
     jQuery.fn.extend({
+    
+        // 规定当鼠标指针悬停在被选元素上时要运行的两个函数。
+        // 方法触发 mouseenter 和 mouseleave 事件。
         hover: function (fnOver, fnOut) {
             return this.mouseenter(fnOver).mouseleave(fnOut || fnOver);
         }
@@ -10368,17 +10531,24 @@
     
     
     jQuery.fn.extend({
-        
+    
+        // 为被选元素添加一个或多个事件处理程序，并规定事件发生时运行的函数。
         bind: function (types, data, fn) {
             return this.on(types, null, data, fn);
         },
+    
+        // 移除被选元素的事件处理程序。
         unbind: function (types, fn) {
             return this.off(types, null, fn);
         },
-        
+    
+        // 为指定的元素（属于被选元素的子元素）添加一个或多个事件处理程序，并规定当这些事件发生时运行的函数。
+        // 使用 delegate() 方法的事件处理程序适用于当前或未来的元素（比如由脚本创建的新元素）。
         delegate: function (selector, types, data, fn) {
             return this.on(types, selector, data, fn);
         },
+    
+        // 删除由 delegate() 方法添加的一个或多个事件处理程序。
         undelegate: function (selector, types, fn) {
             
             // ( namespace ) or ( selector, types [, fn] )
@@ -10388,10 +10558,10 @@
         }
     });
 
-// Bind a function to a context, optionally partially applying any
-// arguments.
-// jQuery.proxy is deprecated to promote standards (specifically Function#bind)
-// However, it is not slated for removal any time soon
+    // Bind a function to a context, optionally partially applying any
+    // arguments.
+    // jQuery.proxy is deprecated to promote standards (specifically Function#bind)
+    // However, it is not slated for removal any time soon
     jQuery.proxy = function (fn, context) {
         var tmp, args, proxy;
         
@@ -10451,18 +10621,18 @@
     };
 
 
-// Register as a named AMD module, since jQuery can be concatenated with other
-// files that may use define, but not via a proper concatenation script that
-// understands anonymous AMD modules. A named AMD is safest and most robust
-// way to register. Lowercase jquery is used because AMD module names are
-// derived from file names, and jQuery is normally delivered in a lowercase
-// file name. Do this after creating the global so that if an AMD module wants
-// to call noConflict to hide this version of jQuery, it will work.
-
-// Note that for maximum portability, libraries that are not jQuery should
-// declare themselves as anonymous modules, and avoid setting a global if an
-// AMD loader is present. jQuery is a special case. For more information, see
-// https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
+    // Register as a named AMD module, since jQuery can be concatenated with other
+    // files that may use define, but not via a proper concatenation script that
+    // understands anonymous AMD modules. A named AMD is safest and most robust
+    // way to register. Lowercase jquery is used because AMD module names are
+    // derived from file names, and jQuery is normally delivered in a lowercase
+    // file name. Do this after creating the global so that if an AMD module wants
+    // to call noConflict to hide this version of jQuery, it will work.
+    
+    // Note that for maximum portability, libraries that are not jQuery should
+    // declare themselves as anonymous modules, and avoid setting a global if an
+    // AMD loader is present. jQuery is a special case. For more information, see
+    // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
     
     if (typeof define === "function" && define.amd) {
         define("jquery", [], function () {
@@ -10493,9 +10663,9 @@
         return jQuery;
     };
 
-// Expose jQuery and $ identifiers, even in AMD
-// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
-// and CommonJS for browser emulators (#13566)
+    // Expose jQuery and $ identifiers, even in AMD
+    // (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
+    // and CommonJS for browser emulators (#13566)
     if (!noGlobal) {
         window.jQuery = window.$ = jQuery;
     }
