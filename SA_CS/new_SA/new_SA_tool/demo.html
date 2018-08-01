@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/SA_tool.css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/element.js"></script>
+    <script src="js/SA_sugar.js"></script>
+    <!--<script src="js/SA_table.js"></script>-->
+
+    <title>Title</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            background-color: #1a2129;
+            color: #a8a8a8;
+        }
+        .abc{
+            height: 30px;
+            line-height: 30px;
+            margin: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="mydemo"></div>
+</body>
+</html>
+<script>
+
+    //dom
+    /*
+    let elem = Element({
+        tagName: 'ul',
+        props: {'class': 'list'},
+        children: [
+            {tagName: 'li', children: ['item1']},
+            {tagName: 'li', children: ['item2']}
+        ]
+    });
+    $("#list_main_body").append(elem.render());
+    */
+
+
+    // SA.waitingMesgs(true);
+
+    // SA.alertMesg("消息提示消息提示！","green",function () {
+    //     console.log("点击确认")
+    // });
+
+    // SA.confirmMesg("消息提示消息提示！","green",function () {
+    //     console.log("点击确认")
+    // },function () {
+    //     console.log("点击取消")
+    // });
+
+
+    function fn1() {
+        console.log('点击');
+    }
+
+    let checkbox = SA.createTool.checkbox({
+        id: "checkbox",
+        name: "stop_refresh",
+        cls: "cde",
+        text: "停止刷新"
+    });
+
+    let text = SA.createTool.text({
+        id: "checkbox",
+        name: "stop_refresh",
+        label: 'label',
+        cls: "cde",
+        text: "停止刷新"
+    });
+
+    let password = SA.createTool.password({
+        id: "checkbox",
+        name: "stop_refresh",
+        label: 'label',
+        cls: "cde",
+        text: "停止刷新"
+    });
+
+    let file = SA.createTool.file({
+        id: "checkbox",
+        name: "stop_refresh",
+        label: 'label',
+        cls: "cde",
+        text: "导入"
+    });
+
+
+    let radio = SA.createTool.radio({
+        id: "radio",
+        name: "stop_refresh",
+        cls: "cde",
+        text: "停止刷新"
+    });
+
+    $(checkbox).addClass('abc');
+
+
+    let select = SA.createTool.select({
+        text: "测试选择框",
+        id: "select_test",
+        name: "select_test",
+        cls: '',
+        options: [{
+            value: "test1",
+            text: "test1"
+        },{
+            value: 'test2',
+            text: 'test2'
+        }]
+    });
+
+
+    let button = SA.createTool.button({
+        text: "确认",
+        id: "select_test",
+        name: "select_test",
+        cls: '',
+        functions: {
+            onclick: 'fn()'
+        }
+    });
+
+
+    let imageButton = SA.createTool.imageButton({
+        id: "enable_selected",
+        name: "enable_selected",
+        cls: "",
+        icon: "images/merge.png",
+        text: "启用选中",
+        functions: {
+            onclick: "enable_selected_items(this);"
+        }
+    });
+
+    $(file).addClass('abc');
+
+    console.log(file);
+
+    $('#mydemo').append(file);
+
+
+
+
+
+
+
+
+</script>

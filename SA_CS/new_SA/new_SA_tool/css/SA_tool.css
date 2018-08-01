@@ -1,0 +1,125 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, * {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Thoma, Microsoft YaHei, 'Lato', Calibri, Arial, sans-serif !important;
+}
+
+input, select, textarea {
+    margin: 0;
+    padding: 0;
+    height: 25px;
+    min-width: 100px;
+    line-height: 25px;
+    color: inherit;
+    background-color: inherit;
+    border: solid 1px rgba( 255, 255, 255, 0.2);
+    box-sizing: border-box;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+select option {
+    min-height: 25px;
+}
+
+
+input[type="radio"],
+input[type="checkbox"] {
+    line-height: normal;
+    box-sizing: border-box;
+    height: 14px;
+    min-width: 14px;
+}
+
+input[type="button"] {
+    border: none;
+    min-height: 25px;
+    min-width: 80px;
+    line-height: 25px;
+    background-color: rgb(207, 125, 99);
+    color: #fff;
+}
+
+button {
+    min-width: 40px;
+    padding: 0 5px;
+    margin-left: 5px;
+    color: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.imaged-button {
+    height: 25px;
+    background: transparent;
+    border: none;
+    border-radius: 2px;
+    line-height: 25px;
+    transition: all 1s;
+}
+.imaged-button:hover,
+.imaged-button:active {
+    background-color: #2c5fb5;
+    color: #f2f2f2;
+    box-shadow: none;
+}
+.button-image {
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    margin: -2px 3px 0 3px;
+    vertical-align: middle;
+}
+.button-text {
+    height: 10px;
+    font-size: 14px;
+    margin-left: 3px;
+    color: inherit;
+}
+.tool-span {
+    display: inline-block;
+}
+.tool-text-pre {
+    font-size: 14px;
+    padding: 0 4px 0 0;
+}
+.tool-text-post {
+    font-size: 14px;
+    padding: 0 0 0 4px;
+}
+.input-file {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+    background-color: yellow;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 70px;
+}
+.file-span {
+    width: 70px;
+    height: 25px;
+    display: inline-block;
+    background-color: rgba(75, 255, 255, 0.2);
+    text-align: center;
+    line-height: 25px;
+    border-radius: 4px;
+    color: #b7b1b1;
+    border: none;
+    margin-left: 11px;
+    font-size: 14px;
+}
+
+
+
+.relative {
+    position: relative;
+}

@@ -84,7 +84,7 @@ PagingHolder.prototype.init_panel_config = function( panel_config ) {
         end_page: "end_page",
         refresh: "refresh",
         search: "search"
-    }
+    };
     paging_holder.panel_config.is_panel_closable = panel_config.is_panel_closable !== undefined ? panel_config.is_panel_closable : false;
     /*默认搜索*/
     paging_holder.panel_config.is_default_search = panel_config.is_default_search !== undefined ? panel_config.is_default_search : true;
@@ -113,8 +113,8 @@ PagingHolder.prototype.init_panel_config = function( panel_config ) {
     /* 外接事件处理函数 */
     paging_holder.panel_config.event_handler = panel_config.event_handler !== undefined ? panel_config.event_handler : null;
     /*检查输入正确与否的工具*/
-    paging_holder.check_tool = new ChinArk_forms();
-    paging_holder.search_check_tool = new ChinArk_forms();
+    // paging_holder.check_tool = new ChinArk_forms();
+    // paging_holder.search_check_tool = new ChinArk_forms();
 };
 
 /*
@@ -1655,7 +1655,7 @@ PagingHolder.prototype.create_top_widgets = function() {
     widgets += paging_holder.create_widgets( top_widgets );
     widgets += '</span>';
     return widgets;
-}
+};
 
 /*
 * 创建面板中的顶部工具栏

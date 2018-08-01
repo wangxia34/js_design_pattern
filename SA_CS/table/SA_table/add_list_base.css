@@ -502,7 +502,7 @@ button {
     margin-left: 5px;
     cursor: pointer;
     box-sizing: border-box;
-    //font-size: 10px;
+    font-size: 10px;
 }
 .imaged-button {
     height: 25px;
@@ -556,7 +556,10 @@ button {
 .checked-line {
     background-color: rgba(11, 9, 9, 0.2);
 }
-tbody tr.odd-num-line:hover, tbody tr.even-num-line:hover,tbody tr.odd:hover, tbody tr.env:hover{
+tbody tr.odd-num-line:hover,
+tbody tr.even-num-line:hover,
+tbody tr.odd:hover,
+tbody tr.env:hover{
     background-color: #333;
 }
 .search-item{
@@ -881,7 +884,11 @@ tbody tr.odd-num-line:hover, tbody tr.even-num-line:hover,tbody tr.odd:hover, tb
     background-size:cover !important;
     width:25px !important;
 }
-#rule_listb_for_risk_rank_list tr.odd-num-line:hover,#rule_listb_for_risk_rank_list tr.even-num-line:hover,#rule_listb_for_risk_rank_list tr.odd:hover, #rule_listb_for_risk_rank_list tr.env:hover, #rule_listb_for_risk_rank_list.rule-listbh:hover {
+#rule_listb_for_risk_rank_list tr.odd-num-line:hover,
+#rule_listb_for_risk_rank_list tr.even-num-line:hover,
+#rule_listb_for_risk_rank_list tr.odd:hover,
+#rule_listb_for_risk_rank_list tr.env:hover,
+#rule_listb_for_risk_rank_list.rule-listbh:hover {
     background-color: rgba(3, 169, 244, 0.16);
 }
 /*#risk_rank_options li{

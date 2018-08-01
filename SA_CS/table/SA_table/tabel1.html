@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="list_main_body">
+    <div id="list_panel_id_for_list_panel" class="list">
+        <div class="list-panel-title">
+            <span class="">列表面板</span>
+            <button id="list_panel_close_for_list_panel" class="close-button"></button>
+        </div>
+        <div class="toolbar">
+            <span class="opt-tools">
+                <span class="widgets-item">
+                    <input type="checkbox" id="stop_refresh" name="stop_refresh">
+                    <label for="stop_refresh" class="postfix-label-for-widget">停止刷新</label>
+                </span>
+                <span class="widgets-item">
+                    <label for="select_test" class="prefix-label-for-widget">测试选择框</label>
+                    <select id="select_test" name="select_test">
+                        <option value="test1">test1</option>
+                    </select>
+                </span>
+            </span>
+            <span class="search">
+                <form name="list_panel_search_form_for_list_panel" onsubmit="return false;">
+                    <span class="extend-search-item">
+                        <span class="widgets-item">
+                            <label for="statistical_pattern" class="prefix-label-for-widget">统计方式</label>
+                            <select id="statistical_pattern" name="statistical_pattern"
+                                    class="search-key-input extend-search-input extend_search_for_list_panel"
+                                    onchange="alert(this.value);">
+                                <option id="s_ip" name="s_ip" class="test_class" value="s_ip">按源IP统计</option>
+                                <option value="d_ip">按目的IP统计</option>
+                                <option value="s_port">按服务端口统计</option>
+                            </select>
+                        </span>
+                    </span>
+                    <span class="extend-search-item">
+                        <span class="widgets-item">
+                            <label for="page_size" class="prefix-label-for-widget">显示条数</label>
+                            <input type="text" id="page_size" name="page_size"
+                                   class="search-key-input extend-search-input extend_search_for_list_panel" value="15">
+                        </span>
+                    </span>
+                    <span class="extend-search-item">
+                        <button id="begin_search" name="begin_search"
+                                class="imaged-button extend_search_for_list_panel my_search_button"
+                                onclick="extend_search_function_extend_extend(this);">
+                            <img class="button-image" src="../images/search16x16.png">
+                            <span class="button-text">搜索</span>
+                        </button>
+                    </span>
+                    <span class="search-item">
+                        <label class="prefix-label-for-widget">某字段关键字</label>
+                        <input id="search_key_for_list_panel" class="search-key-input" placeholder="输入某字段关键字以查询...">
+                        <button id="search_button_for_list_panel" class="imaged-button search-button">
+                            <img class="button-image" src="../images/search16x16.png">
+                            <span class="button-text">查询</span>
+                        </button>
+                    </span>
+                </form>
+            </span>
+            <div class="clear"></div>
+        </div>
+        <div class="container-main-body container-main-body-l">
+            <table class="rule-list">
+                <thead id="panel_header_id_for_list_panel" class="rule-listbh">
+                <tr>
+                    <td class="contentHidden" rowspan="2" width="5%">
+                        <input type="checkbox" id="control_checkbox_for_list_panel" name="checkbox"
+                               onclick="alert(this.value);">
+                    </td>
+                    <td class="contentHidden" rowspan="2" width="15%">
+                        <span name="time_start">发生时间</span>
+                    </td>
+                    <td class="contentHidden" colspan="2" width="30%">
+                        <span>入侵信息</span>
+                    </td>
+                    <td class="contentHidden" rowspan="2" width="10%">
+                        <span name="priority">危险级别</span>
+                    </td>
+                    <td class="contentHidden" rowspan="2" width="15%">
+                        <span name="sip">源</span>
+                    </td>
+                    <td class="contentHidden" rowspan="2" width="15%">
+                        <span name="dip">目标</span>
+                    </td>
+                    <td class="contentHidden" rowspan="2" width="10%">
+                        <span name="action">操作</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="contentHidden" width="15%">
+                        <span name="msg">入侵描述</span>
+                    </td>
+                    <td class="contentHidden" width="15%">
+                        <span name="classification">入侵类型</span>
+                    </td>
+                </tr>
+                </thead>
+                <tbody id="rule_listb_for_list_panel" class="rule-listb">
+                    <tr class="even-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="odd-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="even-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="odd-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="even-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="odd-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="even-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="odd-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="even-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="odd-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="even-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="odd-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="even-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="odd-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                    <tr class="even-num-line">
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="rule-listbc">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden align-center">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                        <td class="contentHidden">&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="toolbar">
+            <span class="opt-tools">
+                <a id="export_selected" name="export_selected" href="showca.cgi?type=pem"
+                   onclick="export_selected_items(this)">
+                    <button class="imaged-button imaged-button">
+                        <img class="button-image" src="../images/download.png">
+                        <span class="button-text">导出选中</span>
+                    </button>
+                </a>
+                <button id="delete_all_logs" name="delete_all_logs" class="imaged-button"
+                        onclick="delete_all_logs(this)">
+                    <img class="button-image" src="../images/delete.png">
+                    <span class="button-text">清空日志</span>
+                </button>
+            </span>
+            <span class="paging-tools">
+                <span id="first_page_icon_for_list_panel" class="glyphicon glyphicon-step-backward" title="第一页"></span>
+                <span id="last_page_icon_for_list_panel" class="glyphicon glyphicon-triangle-left" title="上一页"></span>
+                <span class="paging-text">
+                    第<input id="current_page_for_list_panel" class="paging-tool-text" type="text"
+                            onkeyup="this.value=this.value.replace(/\D/g,'')"
+                            onafterpaste="this.value=this.value.replace(/\D/g,'')">页,
+                    共<span id="total_page_for_list_panel" class="paging-tool-text">0</span>页</span>
+                <span id="next_page_icon_for_list_panel" class="glyphicon glyphicon-triangle-right" title="下一页"></span>
+                <span id="end_page_icon_for_list_panel" class="glyphicon glyphicon-step-forward" title="最后一页"></span>
+                <span id="refresh_icon_for_list_panel" class="glyphicon glyphicon-refresh refresh" title="刷新"></span>
+                <span class="paging-text">
+                    显示<span id="from_num_for_list_panel" class="paging-tool-text">0</span>
+                    -<span id="to_num_for_list_panel" class="paging-tool-text">0</span>条,
+                    共<span id="total_num_for_list_panel" class="paging-tool-text">0</span>条
+                </span>
+            </span>
+            <div class="clear"></div>
+        </div>
+        <div class="toolbar align-center">
+            <button class="imaged-button" onclick="show_mesg_when_ok();"><span class="button-text">确定</span></button>
+            <button class="imaged-button" style="margin-top: 5px;margin-bottom: 5px;" onclick=""><span
+                    class="button-text">取消</span></button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -71,11 +71,11 @@ var list_panel_config = {
     check_in_id: "list_main_body",  /* ***必填***，确定面板挂载在哪里 */
     panel_name: "list_panel",       /* ==*可选*==，默认名字my_list_panel，当一个页面存在多个列表面板，此字段必填，
                                                    以区别不同面板 */
-    page_size: 0,                  /* ===可选===，控制数据项默认加载多少条，默认是15，此处可以在加载数据过程中更改，
+    page_size: 15,                  /* ===可选===，控制数据项默认加载多少条，默认是15，此处可以在加载数据过程中更改，
                                                    更改方法是从服务器加载数据到浏览器时，传一个page_size字段到浏览器 */
     panel_title: "列表面板",        /* ===可选===，面板的标题 */
     is_panel_closable: true,        /* ===可选===，默认是false，控制面板是否可关闭 */
-    is_modal: false,                /* ===可选===，默认是false，控制面板是否模态显示 */
+    is_modal: true,                /* ===可选===，默认是false，控制面板是否模态显示 */
     modal_config: {                 /* ===可选===，当想控制模块框大小层次时创建，并且在is_modal为true时才生效 */
         modal_box_size: "l",        /* ===可选===，默认是l，有l、m、s三种尺寸的模态框 */
         modal_level: 10,            /* ===可选===，默认是10，数字越大，模态框弹得越上层，可以在其他模态框之上 */
@@ -152,7 +152,7 @@ var list_panel_config = {
                                             如要渲染下文中classification列，见本文档的42行。
                                  */
         cls: "",                /* ==可选==，作用于标题头单元格，标题的class，比如要标题加粗、斜体等 */
-        column_cls: "",         /* ==可选==，作用于整列，控制单元格中内容显示样式，比如要求内容居中显示，首行缩进两字符等
+        columnCls: "",         /* ==可选==，作用于整列，控制单元格中内容显示样式，比如要求内容居中显示，首行缩进两字符等
                                              当type为checkbox、radio类型时，默认居中显示，其他左对齐显示，并且首行缩进5px，
                                              在此处有一个align-center的样式可以直接使用，控制内容居中显示
                                  */
@@ -163,7 +163,7 @@ var list_panel_config = {
             onclick: "alert(this.value);"
         }
     }, {
-        enable: false,
+        enable: true,
         type: "radio",
         title: "填啥都是‘请选择’",
         name: "radio",
@@ -221,7 +221,7 @@ var list_panel_config = {
     ],
     top_widgets: [
         {                     /* ===可选===，在面板左上角的操作控件，目前按钮位置不能调整 */
-        enable: false,                  /* =*可选*=，如果为不填或者为false,就不创建 */
+        enable: true,                  /* =*可选*=，如果为不填或者为false,就不创建 */
         type: "image_button",           /* =*可选*=，目前支持类型有text,password,file,select,checkbox,radio,textarea,
                                                     label,button,link_button和image_button,最常用的是image_button，
                                                     并且目前考虑得比较多其他组件比较弱，但能勉强使用，如果其他需求很强，
@@ -236,7 +236,7 @@ var list_panel_config = {
         functions: {                    /* ==可选==，回调函数，没有的话就只是一个按钮，什么也不做 */
         }
     }, {
-        enable: false,
+        enable: true,
         type: "image_button",
         id: "enable_selected",
         name: "enable_selected",
@@ -247,7 +247,7 @@ var list_panel_config = {
             onclick: "enable_selected_items(this)"
         }
     }, {
-        enable: false,
+        enable: true,
         type: "image_button",
         id: "disable_selected",
         name: "disable_selected",

@@ -572,14 +572,12 @@
     });
     
     
-   
-    
     
     
     
     $.extend(SA.prototype,{
     
-        isDOM: isDOM
+    
     
     });
     

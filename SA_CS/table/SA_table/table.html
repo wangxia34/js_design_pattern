@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="list_query_template" style="height: 598px;">
+    <div id="list_panel_id_for_monitor_object_list_template" class="list">
+        <div class="toolbar">
+            <span class="opt-tools">
+                <button class="imaged-button imaged-button" onclick="add_monitor_object();">
+                    <img class="button-image" src="../images/add16x16.png">
+                    <span class="button-text">添加监控对象</span>
+                </button>
+            </span>
+            <div class="clear"></div>
+        </div>
+        <div class="container-main-body">
+            <table class="rule-list">
+                <thead id="panel_header_id_for_monitor_object_list_template" class="rule-listbh">
+                <tr>
+                    <td class="text-left contentHidden" width="25%" title=""><span name="text">对象名称</span></td>
+                    <td class="text-left contentHidden" width="15%" title=""><span name="ipAddress">IP地址</span></td>
+                    <td class="text-left contentHidden" width="10%" title=""><span name="moniteMethod">监控方式</span></td>
+                    <td class="text-left contentHidden" width="10%" title=""><span name="healthMethod">可用性检测方式</span>
+                    </td>
+                    <td class="text-left contentHidden" width="10%" title=""><span name="health">健康性</span></td>
+                    <td class="text-left contentHidden" width="10%" title=""><span name="avaliable">可用性</span></td>
+                    <td class="text-left contentHidden" width="10%" title=""><span name="response_time">响应延迟</span></td>
+                    <td class="contentHidden" width="25%" title=""><span name="action">活动/动作</span></td>
+                </tr>
+                </thead>
+                <tbody id="rule_listb_for_monitor_object_list_template" class="rule-listb">
+                <tr class="even-num-line num-line-action">
+                    <td class="contentHidden" title="" style="height: 33px;">ld_sa</td>
+                    <td class="contentHidden" title="" style="height: 33px;">192.168.201.185</td>
+                    <td class="contentHidden" title="" style="height: 33px;">SNMP</td>
+                    <td class="contentHidden" title="" style="height: 33px;">ICMP</td>
+                    <td class="contentHidden" title="" style="height: 33px;">0.00</td>
+                    <td class="contentHidden" title="" style="height: 33px;">不可用</td>
+                    <td class="contentHidden" title="" style="height: 33px;">-</td>
+                    <td class="contentHidden" title="" style="height: 33px;"><input type="image"
+                                                                                    id="monitor_check_button"
+                                                                                    name="monitor_check_button"
+                                                                                    class="action-image"
+                                                                                    value="1,2,ld_sa"
+                                                                                    onclick="monitor_object_check(this);"
+                                                                                    title="查看"
+                                                                                    src="../images/search16x16.png"><input
+                            type="image" id="monitor_edit_button" name="monitor_edit_button" class="action-image"
+                            value="{'moniteMethod':'SNMP','healthInfo':{'healthMethod':'ICMP','switch':'on'},'moniteCheckArgs':{'passwd':'<null>','user':''},'uid':'2','text':'ld_sa','ipAddress':'192.168.201.185','groupID':'1','type':'Linux','antiTamper':{'capture_layer':'3','consistency':'0','switch':'off'},'horse':{'switch':'off','args':''},'sensitive':{'switch':'off','args':''},'webConfig':{'passwd':'','urlAddress':'','user':'','port':''}}"
+                            onclick="monitor_object_edit(this);" title="编辑" src="../images/edit.png"><input type="image"
+                                                                                                            id="monitor_delete_button"
+                                                                                                            name="monitor_delete_button"
+                                                                                                            class="action-image"
+                                                                                                            value="2"
+                                                                                                            onclick="monitor_object_delete(this);"
+                                                                                                            title="删除"
+                                                                                                            src="../images/delete.png">
+                    </td>
+                </tr>
+                <tr class="odd-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="even-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="odd-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="even-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="odd-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="even-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="odd-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="even-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="odd-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="even-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="odd-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="even-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="odd-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="even-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                <tr class="odd-num-line">
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                    <td class="contentHidden" title="" style="height: 33px;">&nbsp;</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="toolbar">
+            <span class="paging-tools" style="margin-top: 5px; margin-bottom: 5px;">
+                <span id="first_page_icon_for_monitor_object_list_template" class="glyphicon glyphicon-step-backward" title="第一页"></span>
+                <span id="last_page_icon_for_monitor_object_list_template" class="glyphicon glyphicon-triangle-left" title="上一页"></span>
+                <span class="paging-text">
+                    第<input id="current_page_for_monitor_object_list_template" class="paging-tool-text" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">页,
+                    共<span id="total_page_for_monitor_object_list_template" class="paging-tool-text">1</span>页
+                </span>
+                <span id="next_page_icon_for_monitor_object_list_template" class="glyphicon glyphicon-triangle-right" title="下一页"></span>
+                <span id="end_page_icon_for_monitor_object_list_template" class="glyphicon glyphicon-step-forward" title="最后一页"></span>
+                <span id="refresh_icon_for_monitor_object_list_template" class="glyphicon glyphicon-refresh refresh" title="刷新"></span>
+                <span class="paging-text">
+                    显示<span id="from_num_for_monitor_object_list_template" class="paging-tool-text">1</span>
+                    -<span id="to_num_for_monitor_object_list_template" class="paging-tool-text">1</span>条,
+                    共<span id="total_num_for_monitor_object_list_template" class="paging-tool-text">1</span>条
+                </span>
+            </span>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+
+    var flags = /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(str);
+
+
+    //备份
+    var flag = /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(str);
+
+</script>

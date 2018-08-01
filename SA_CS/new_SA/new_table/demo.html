@@ -2,29 +2,397 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/SA_tool.css">
     <link rel="stylesheet" href="css/SA_mesgs_hints.css">
     <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/element.js"></script>
     <script src="js/SA_sugar.js"></script>
     <script src="js/SA_table.js"></script>
+
     <title>Title</title>
     <style>
         html,body{
             width: 100%;
             height: 100%;
-            background-color: #1a2129;
+            background-color: #000;
+            color: #a8a8a8;
         }
     </style>
 </head>
 <body>
-
+<div id="list_main_body"></div>
 </body>
 </html>
 <script>
-    // SA.waitingMesgs(true);
 
-    let newTabel = new SATable();
+    function abc() {
+        console.log('function abc')
+    }
+
+    let list_panel_render = {
+        'checkbox': {
+            listeners: {    /* ===可选===，向checkbox增加类似click的外接监听 */
+                click: function( element, data_item, list_obj ) {
+                    if ( element.checked ) {
+                        alert( data_item.id + "chcked!" );
+                    } else {
+                        alert( data_item.id + "unchcked!" );
+                    }
+                }
+            }
+        },
+        'radio': {      /* ===可选===，向radio增加类似click的外接监听 */
+            listeners: {
+                click: function( element, data_item, event, list_obj ) {
+                    if ( element.checked ) {
+                        alert( data_item.id + "chcked!" );
+                    } else {
+                        alert( data_item.id + "unchcked!" );
+                    }
+                }
+            }
+        },
+        'classification': {
+            render: function( default_rendered_text, data_item ) {
+                return '<span class="note">' + default_rendered_text + "--" + data_item.id + '</span>';
+            }
+        },
+        'action': {
+            render: function( default_rendered_text, data_item ) {
+                return default_rendered_text;
+                var action_buttons = [{
+                    enable: true,
+                    id: "delete_all_logs",
+                    name: "delete_all_logs",
+                    cls: "",
+                    button_icon: "search16x16.png",
+                    button_text: "查看详情",
+                    value: data_item.id,
+                    functions: {
+                        onclick: "alert(this.value);"
+                    }
+                }];
+
+                return PagingHolder.create_action_buttons( action_buttons );
+            }
+        }
+    };
+
+
+    let list_panel_config = {
+        url: "/cgi-bin/list_panel.cgi",
+        parentId: "list_main_body",
+        panelName: "list_panel",
+        pageSize: 15,
+        panelTitle: "列表面板",
+        titleIcon: "images/merge.png",
+        isClose: true,
+        isModal: false,
+        modalConfig: {
+            modalBoxSize: "l",
+            modalLevel: 10,
+        },
+        isSearch: true,
+        searchConfig: {
+            inputTip: "输入关键字以查询...",
+            title: "某字段关键字"
+        },
+        isPagingTools: true,
+        isLoadAllData: true,
+        render: list_panel_render,
+        check_obj: null,
+        eventHandler: {
+            before_load_data: function( list_obj ) {
+
+            },
+            after_load_data: function ( list_obj, response ) {
+
+            }
+        },
+        panelHeader: [
+            {
+                enable: true,
+                type: "checkbox",
+                title: "",
+                name: "checkbox",
+                cls: "ac",
+                columnCls: "",
+                width: "5%",
+                functions: {
+                    onclick: "alert(this.value);"
+                }
+            },
+            {
+                enable: false,
+                type: "radio",
+                title: "填啥都是‘请选择’",
+                name: "radio",
+                columnCls: "",
+                width: "5%"
+            },
+            {
+                enable: true,
+                type: "text",
+                title: "发生时间",
+                name: "time_start",
+                width: "15%"
+            },
+            {
+                enable: true,
+                type: "text",
+                title: "入侵信息",
+                width: "30%",           /* 这里宽度不起决定性作用 */
+                children: [{            /* 支持两层标题套用 */
+                    type: "text",
+                    title: "入侵描述",
+                    name: "msg",
+                    width: "15%"        /* 最终决定宽度的是子节点 */
+                }, {
+                    type: "text",
+                    title: "入侵类型",
+                    name: "classification",
+                    columnCls: "align-center",
+                    width: "15%"        /* 最终决定宽度的是子节点 */
+                }]
+            },
+            {
+                enable: true,
+                type: "text",
+                title: "危险级别",
+                name: "priority",
+                columnCls: "align-center",
+                width: "10%"
+            },
+            {
+                enable: true,
+                type: "text",
+                title: "源",
+                name: "sip",
+                width: "15%"
+            },
+            {
+                enable: true,
+                type: "text",
+                title: "目标",
+                name: "dip",
+                width: "15%"
+            },
+            {
+                enable: true,
+                type: "action",
+                title: "操作",
+                name: "action",
+                width: "10%"
+            }
+        ],
+        topWidgets: [
+            {
+                enable: true,
+                type: "imageButton",
+                id: "new_list",
+                name: "new_list",
+                label: "按钮要闹哪样",
+                cls: "",
+                icon: "images/search16x16.png",
+                text: "新列表",
+                functions: {
+                    onclick: "abc(this)"
+                }
+            }, {
+                enable: true,
+                type: "imageButton",
+                id: "enable_selected",
+                name: "enable_selected",
+                cls: "",
+                icon: "images/search16x16.png",
+                text: "启用选中",
+                functions: {
+                    onclick: "abc(this)"
+                }
+            }, {
+                enable: true,
+                type: "imageButton",
+                id: "disable_selected",
+                name: "disable_selected",
+                cls: "",
+                icon: "images/search16x16.png",
+                text: "禁用选中",
+                functions: {
+                    onclick: "abc(this)"
+                }
+            }, {
+                enable: true,
+                type: "checkbox",
+                id: "stop_refresh",
+                name: "stop_refresh",
+                cls: "",
+                text: "停止刷新"
+            }, {
+                enable: true,
+                type: "select",
+                title: "测试选择框",
+                id: "select_test",
+                name: "select_test",
+                options: [{
+                    value: "test1",
+                    text: "test1"
+                }]
+            }
+        ],
+        bottomWidgets: [
+            {                  /* ===可选===，在面板左下角位置的控件组，创建方式类似top_widgets */
+                enable: true,
+                type: "link_button",
+                id: "export_selected",
+                name: "export_selected",
+                href: "showca.cgi?type=pem",
+                button_icon: "download.png",
+                button_text: "导出选中",
+                functions: {
+                    onclick: "export_selected_items(this)"
+                }
+            }, {
+                enable: true,
+                type: "image_button",
+                id: "delete_all_logs",
+                name: "delete_all_logs",
+                cls: "",
+                button_icon: "delete.png",
+                button_text: "清空日志",
+                functions: {
+                    onclick: "delete_all_logs(this)"
+                }
+            }
+        ],
+        extend_search: [
+            {               /* ===可选===，定义额外的搜索筛选条件，位置在面板右上角，控件类似top_widgets中控件 */
+                enable: true,               /* ==可选==，如果为不填或者为false,就不显示*/
+                type: "select",             /* ==可选==，默认为text类型 */
+                id: "statistical_pattern",  /* ==可选==，控件ID */
+                name: "statistical_pattern",/* **必填**，控件的名字 */
+                title: "统计方式",          /* **必填**，输入控件前面的提示信息，没有会导致用户迷糊 */
+                cls: "",                    /* ==可选==，控件本身样式的类名，会覆盖默认类的属性 */
+                multiple: false,            /* ==可选==，select组件特有 */
+                functions: {
+                    onchange: "alert(this.value);"
+                },
+                options: [{                 /* ==可选==，select组件特有 */
+                    id: "s_ip",
+                    name: "s_ip",
+                    cls: "test_class",
+                    value: "s_ip",
+                    text: "按源IP统计"
+                }, {
+                    value: "d_ip",
+                    text: "按目的IP统计"
+                }, {
+                    value: "s_port",
+                    text: "按服务端口统计"
+                }],
+                check: {                    /* ==可选==，如果定义了检测项，在查询之前要检查通过才能查询 */
+                    type: 'select-one',
+                    required: 1,
+                    ass_check: function( check ){
+
+                    }
+                }
+            }, {
+                enable: true,
+                type: "text",
+                id: "page_size",
+                name: "page_size",
+                title: "显示条数",
+                cls: "",
+                value: 15,
+                check: {
+                    type:'text',
+                    required: 1,
+                    check: 'int|',
+                    ass_check: function(){
+                        var val = $( "#page_size" ).val();
+                        if( val > 100 || val < 10 ) {
+                            return "输入10-100之间的整数";
+                        }
+                    }
+                }
+            }, {
+                enable: true,
+                type: "image_button",
+                id: "begin_search",
+                name: "begin_search",
+                button_icon: "search16x16.png",
+                button_text: "搜索",
+                cls: "my_search_button",
+                functions: {
+                    onclick: "extend_search_function_extend_extend(this);"
+                }
+            }
+        ],
+        actions: {
+            /* ===可选===，如果想在点击默认渲染的按钮外接自己的函数时可以使用这里的接口，
+                                            根据经验来看，这里的接口使用得很少，因为可以用render方案替代 */
+            enable_button: function( data_item ) {
+                alert("外部函数enable-" + data_item.id);
+            },
+            disable_button: function( data_item ) {
+                alert("外部函数disable-" + data_item.id);
+            },
+            eidt_button: function( data_item ) {
+                alert("外部函数eidt-" + data_item.id);
+            },
+            delete_button: function( data_item ) {
+                alert("外部函数delete-" + data_item.id);
+            },
+            edit_item: function( data_item, on_finished ) {
+                /* 开始书写自己的代码 */
+                alert("外部函数eidt-正在编辑" + paging_holder.selected_item);
+            }
+        },
+        bottom_extend_widgets: {        /* ===可选===，定义放在底部的按钮 */
+            id: "",
+            name: "",
+            cls: "align-center",
+            sub_items: [{
+                enable: true,
+                type: "image_button",
+                cls: "",
+                button_text: "确定",
+                functions: {
+                    onclick: "show_mesg_when_ok();"
+                }
+            }, {
+                enable: true,
+                type: "image_button",
+                cls: "",
+                button_text: "取消",
+                style: "margin-top: 5px;margin-bottom: 5px;",
+                functions: {
+                    onclick: ""
+                }
+            }]
+        }
+    };
+
+    let newTabel = new SATable( list_panel_config );
+
+    newTabel.render();
 
     console.log(newTabel);
+
+
+    //dom
+    /*
+    let elem = Element({
+        tagName: 'ul',
+        props: {'class': 'list'},
+        children: [
+            {tagName: 'li', children: ['item1']},
+            {tagName: 'li', children: ['item2']}
+        ]
+    });
+    $("#list_main_body").append(elem.render());
+    */
+
 
 
 
