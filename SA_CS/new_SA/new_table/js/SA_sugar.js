@@ -26,8 +26,6 @@
 */
 
 (function () {
-    
-    
     let createTool,
         SA = function () {};
     
@@ -37,13 +35,13 @@
             inputProps;
         
         contentBody = {
-            tagName: 'span',
+            tagName: "span",
             props: {
-                class: 'tool-span'
+                class: "tool-span"
             },
             children: [
                 {
-                    tagName: 'input',
+                    tagName: "input",
                     props: {
                         type: item.type
                     }

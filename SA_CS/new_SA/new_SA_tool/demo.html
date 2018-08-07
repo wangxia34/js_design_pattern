@@ -26,6 +26,34 @@
 </head>
 <body>
 <div id="mydemo"></div>
+
+
+<button id="refresh">refresh element</button>
+<div id="root"></div>
+<script>
+    let elem = Element({
+        tagName: 'ul',
+        props: {'class': 'list'},
+        children: [
+            Element({tagName: 'li', children: ['item1']}),
+            Element({tagName: 'li', children: ['item2']})
+        ]
+    });
+    let newElem =  Element({
+        tagName: 'ul',
+        props: {'class': 'list'},
+        children: [
+            Element({tagName: 'li', children: ['item1']}),
+            Element({tagName: 'li', children: ['hahaha']})
+        ]
+    });
+    let $root = document.querySelector('#root');
+    let $refresh = document.querySelector('#refresh');
+    updateElement($root, elem);
+    $refresh.addEventListener('click', () => {
+        updateElement($root, newElem, elem);
+    });
+</script>
 </body>
 </html>
 <script>

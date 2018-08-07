@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/Tween.js"></script>
+    <script src="js/createLine.js"></script>
+    <script src="demo1.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        .mydemo {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .terminal {
+            display: inline-block;
+            width: 46px;
+            height: 46px;
+            background-color: #fff;
+            color: rgb(207, 125, 99);
+            position: relative;
+            z-index: 10;
+        }
+        .terminal i {
+            font-size: 46px;
+        }
+        .attack-circle{
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="mydemo" id="mydemo">
+
+    <button id="btn">点击</button>
+
+    <div class="terminal user1" id="user1"><i class="icon iconfont icon-ren"></i></div>
+
+
+    <div class="terminal server1" id="server1"><i class="icon iconfont icon-msnui-server"></i></div>
+
+</div>
+
+
+</body>
+</html>
+
+<script>
+
+    var w_height = $(window).height();
+
+    var w_width = $(window).width();
+
+    $("#user1").offset({top: 40, left: 100});
+
+    $("#server1").offset({top: w_height - 40 - 46, left: 200});
+
+    CreateLine(100 + 23, 40 + 23, 200 + 23, w_height - 63, "mydemo");
+
+    $("#btn").click(function () {
+
+        var c1 = CreateAttack(100 + 23 - 4, 40 + 23 - 4, 200 + 23 - 4, w_height - 63 - 4, "mydemo");
+
+        c1.animate(2000, "linear");
+    })
+
+
+
+
+
+
+
+</script>
