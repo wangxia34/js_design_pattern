@@ -31,11 +31,16 @@ LinearGradient.prototype.drawBall = function(id, cj) {
     
     this.ctx.clearRect(0, 0, this.width, this.height);
     
-    var circlej = cj ? cj : this.biaoji.length;
     var circlei = /id/.test(id) ? id : 'id' + id;
     
     if(this.biaoji[circlei] === undefined){
-        this.biaoji[circlei] = [0];
+        this.biaoji[circlei] = [];
+    }
+    
+    var circlej = cj ? cj : this.biaoji[circlei].length;
+    
+    if(this.biaoji[circlei][circlej] === undefined){
+        this.biaoji[circlei][circlej] = 0;
     }
     
     this.draw();
@@ -44,22 +49,19 @@ LinearGradient.prototype.drawBall = function(id, cj) {
         this.addcircle(circlei, j);
     }
     
-    console.log(this.isbiaoji(this.biaoji));
     if(this.isbiaoji(this.biaoji)) {
         window.requestAnimationFrame(this.drawBall.bind(this, circlei, circlej))
     }
 };
 
 LinearGradient.prototype.isbiaoji = function(obj) {
-    
     for (var key in obj) {
-        for (var i = 0; i < key.length; i++) {
-            if (key[i] < 1){
+        for (var i = 0; i < obj[key].length; i++) {
+            if (obj[key][i] < 1){
                 return true;
             }
         }
     }
-    
     return false;
 };
 
@@ -83,7 +85,7 @@ LinearGradient.prototype.addcircle = function(ci,cj) {
         y = item.end[1],
         ox = item.start[0],
         oy = item.start[1];
-    console.log(this.biaoji);
+    
     if(this.biaoji[ci][cj] > 1) {
         self.ctx.clearRect(x - 5, y - 5, 10, 10);
     }else {
