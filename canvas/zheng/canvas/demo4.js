@@ -22,7 +22,7 @@ LinearGradient.prototype.draw = function () {
         this.ctx.moveTo(this.data[i].start[0], this.data[i].start[1]);
         // 曲线
         this.ctx.bezierCurveTo(this.data[i].ctrlA[0], this.data[i].ctrlA[1], this.data[i].ctrlB[0], this.data[i].ctrlB[1], this.data[i].end[0], this.data[i].end[1]);
-    
+        
         this.ctx.stroke();
     }
 };

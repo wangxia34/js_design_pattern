@@ -9,7 +9,7 @@ var XianTiao = {
         "top": '0px',
         "width": '0px',
         "transform-origin": "0% 50%",
-        "transform": " "
+        "transform": "rotate(0deg)"
     }
 };
 
