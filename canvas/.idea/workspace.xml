@@ -14,61 +14,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="demo2.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo1/demo2.html">
+      <file leaf-file-name="demo4.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zheng/canvas/demo4.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="43" column="4" lean-forward="false" selection-start-line="43" selection-start-column="4" selection-end-line="47" selection-end-column="31" />
-              <folding />
+            <state relative-caret-position="558">
+              <caret line="89" column="29" lean-forward="false" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
+              <folding>
+                <element signature="e#2041#2235#0" expanded="false" />
+                <element signature="e#2286#2453#0" expanded="false" />
+                <element signature="e#2510#3403#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demo1.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo1/demo1.js">
+      <file leaf-file-name="demo4.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/zheng/canvas/demo4.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="demo2.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo1/demo2.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-543">
-              <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="demo1.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zheng/html_js/demo1.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="demo1.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/zheng/html_js/demo1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="59" column="7" lean-forward="false" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="demo1.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo1/demo1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+            <state relative-caret-position="1067">
+              <caret line="157" column="6" lean-forward="true" selection-start-line="157" selection-start-column="6" selection-end-line="157" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -79,8 +43,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -98,12 +62,12 @@
       <find>name</find>
       <find>canvas.</find>
       <find>data</find>
-      <find>ctrlDrawIndex</find>
       <find>ctrlNodesArr</find>
       <find>[i]</find>
       <find>id</find>
       <find>biaoji</find>
       <find>btmhid</find>
+      <find>ctrlDrawIndex</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -121,14 +85,12 @@
         <option value="$PROJECT_DIR$/demo1/demo2.js" />
         <option value="$PROJECT_DIR$/zheng/js/createLine.js" />
         <option value="$PROJECT_DIR$/canvas/demo2.html" />
-        <option value="$PROJECT_DIR$/canvas/demo1.html" />
         <option value="$PROJECT_DIR$/canvas/demo3.js" />
         <option value="$PROJECT_DIR$/canvas/demo3.html" />
         <option value="$PROJECT_DIR$/canvas/demo4.html" />
         <option value="$PROJECT_DIR$/zheng/demo1.html" />
         <option value="$PROJECT_DIR$/canvas/demo5.js" />
         <option value="$PROJECT_DIR$/canvas/demo6.html" />
-        <option value="$PROJECT_DIR$/canvas/demo5.html" />
         <option value="$PROJECT_DIR$/canvas/demo52.js" />
         <option value="$PROJECT_DIR$/zheng/canvas/demo1.html" />
         <option value="$PROJECT_DIR$/zheng/canvas/demo2.js" />
@@ -137,10 +99,15 @@
         <option value="$PROJECT_DIR$/zheng/html_js/demo1.html" />
         <option value="$PROJECT_DIR$/.eslintrc.js" />
         <option value="$PROJECT_DIR$/zheng/canvas/demo3.js" />
-        <option value="$PROJECT_DIR$/zheng/canvas/demo4.js" />
-        <option value="$PROJECT_DIR$/zheng/canvas/demo4.html" />
         <option value="$PROJECT_DIR$/demo1/demo1.html" />
         <option value="$PROJECT_DIR$/demo1/demo1.js" />
+        <option value="$PROJECT_DIR$/zheng/canvas/demo4.js" />
+        <option value="$PROJECT_DIR$/zheng/canvas/demo4.html" />
+        <option value="$PROJECT_DIR$/canvas/demo1.html" />
+        <option value="$PROJECT_DIR$/canvas/canvas3小球直线运动带轨迹.html" />
+        <option value="$PROJECT_DIR$/canvas/demo51.html" />
+        <option value="$PROJECT_DIR$/canvas/canvas5小球沿平滑曲线运动固定点.html" />
+        <option value="$PROJECT_DIR$/canvas/demo5.html" />
       </list>
     </option>
   </component>
@@ -150,7 +117,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="713" />
     <option name="width" value="734" />
     <option name="height" value="867" />
@@ -181,25 +148,13 @@
             <path>
               <item name="canvas" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvas" type="462c0819:PsiDirectoryNode" />
-              <item name="demo1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvas" type="462c0819:PsiDirectoryNode" />
               <item name="zheng" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvas" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvas" type="462c0819:PsiDirectoryNode" />
               <item name="zheng" type="462c0819:PsiDirectoryNode" />
-              <item name="html_js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvas" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvas" type="462c0819:PsiDirectoryNode" />
-              <item name="zheng" type="462c0819:PsiDirectoryNode" />
-              <item name="html_js" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -211,7 +166,7 @@
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../trajectory" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
@@ -262,17 +217,18 @@
       <workItem from="1533604073220" duration="28541000" />
       <workItem from="1533690334938" duration="28339000" />
       <workItem from="1533776441606" duration="10279000" />
-      <workItem from="1533796922348" duration="2287000" />
+      <workItem from="1533796922348" duration="5777000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69446000" />
+    <option name="totallyTimeSpent" value="72936000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20310296" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16008462" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -304,45 +260,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/demo1/demo2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="946">
-          <caret line="43" column="4" lean-forward="false" selection-start-line="43" selection-start-column="4" selection-end-line="47" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zheng/html_js/demo1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395384">
-          <caret line="17972" column="20" lean-forward="false" selection-start-line="17972" selection-start-column="4" selection-end-line="17972" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zheng/html_js/demo1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="29" column="35" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo1/demo2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zheng/html_js/js/createLine.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -355,6 +272,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1606">
           <caret line="73" column="11" lean-forward="true" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -477,45 +395,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/canvas/demo2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/canvas/demo1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="93" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zheng/canvas/jquery-3.3.1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/canvas/demo3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="998">
-          <caret line="49" column="9" lean-forward="false" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/canvas/demo3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" column="44" lean-forward="false" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/canvas/demo4.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="130" column="18" lean-forward="true" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -524,20 +408,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="24" column="33" lean-forward="false" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/canvas/demo5.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zheng/canvas/demo1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2420">
-          <caret line="110" column="18" lean-forward="true" selection-start-line="110" selection-start-column="18" selection-end-line="110" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -545,13 +416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="111" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/canvas/demo5.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="30" column="4" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -585,27 +449,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zheng/canvas/demo4.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3190">
-          <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zheng/canvas/demo4.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="27" />
-          <folding>
-            <element signature="e#852#1897#0" expanded="false" />
-            <element signature="e#1950#2144#0" expanded="false" />
-            <element signature="e#2195#2362#0" expanded="false" />
-            <element signature="e#2419#3312#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.eslintrc.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -614,34 +457,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo1/demo1.html">
+    <entry file="file://$PROJECT_DIR$/zheng/html_js/demo1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo1/demo2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="43" column="4" lean-forward="false" selection-start-line="43" selection-start-column="4" selection-end-line="47" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo1/demo1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo1/demo2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-543">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        <state relative-caret-position="502">
+          <caret line="73" column="33" lean-forward="true" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -654,10 +473,161 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zheng/html_js/demo1.html">
+    <entry file="file://$PROJECT_DIR$/demo1/demo2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="59" column="7" lean-forward="false" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+        <state relative-caret-position="-543">
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo1/demo1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo1/demo2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="43" column="4" lean-forward="false" selection-start-line="43" selection-start-column="4" selection-end-line="47" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo1/demo1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/demo1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="976">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/demo2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-234">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/demo3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="32" column="2" lean-forward="true" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/demo3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="44" lean-forward="false" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/canvas图片及连线.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-550">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/demo4.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2860">
+          <caret line="130" column="18" lean-forward="true" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/canvas4小球沿曲线运动随机.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/demo5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/demo51.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="19" column="54" lean-forward="false" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/canvas5小球沿平滑曲线运动固定点.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/canvas3小球直线运动带轨迹.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/demo5.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zheng/canvas/demo1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1815">
+          <caret line="110" column="18" lean-forward="true" selection-start-line="110" selection-start-column="18" selection-end-line="110" selection-end-column="18" />
+          <folding>
+            <element signature="e#3257#3416#0" expanded="false" />
+            <element signature="e#3471#4570#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zheng/canvas/demo4.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="89" column="29" lean-forward="false" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
+          <folding>
+            <element signature="e#2041#2235#0" expanded="false" />
+            <element signature="e#2286#2453#0" expanded="false" />
+            <element signature="e#2510#3403#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zheng/canvas/demo4.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1067">
+          <caret line="157" column="6" lean-forward="true" selection-start-line="157" selection-start-column="6" selection-end-line="157" selection-end-column="6" />
           <folding />
         </state>
       </provider>

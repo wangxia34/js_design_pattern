@@ -1,7 +1,5 @@
 
 function LinearGradient(option) {
-    this.ctrlDrawIndex = 0;
-    
     this.canvas = document.getElementById(option.canvasId);
     this.ctx = this.canvas.getContext("2d");
     this.width = this.canvas.width;
@@ -28,10 +26,14 @@ LinearGradient.prototype.draw = function () {
 };
 
 LinearGradient.prototype.drawBall = function(id, cj) {
+    // 判断是否是回调
+    // 如果是回调产生的调用，可以继续循环；
+    // 如果是接口调用，除非所有的循环都已经结束，否则不允许开始新的循环。
     this.cishu = cj !== undefined ? 1 : 0;
     
     this.ctx.clearRect(0, 0, this.width, this.height);
     
+    // id为数字时容易出bug，将其转变为字符串，用id作为一个标记使用。
     var circlei = /id/.test(id) ? id : "id" + id;
     
     if (this.biaoji[circlei] === undefined) {

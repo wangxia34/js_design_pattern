@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>canvas大面积数据展示</title>
+    <title>canvas</title>
     <script src="jquery-3.3.1.js"></script>
-    <script src="demo5.js"></script>
+    <script src="canvas5.js"></script>
     <style>
         #canvas {
             background-color: #fff;
@@ -18,7 +18,6 @@
 </head>
 <body>
 <canvas height="400" width="600" id="canvas"></canvas>
-<button id="btn">点击</button>
 <script>
 
 
@@ -35,14 +34,9 @@
 
     var newMap = new LinearGradient(option);
 
-    $("#btn").click(function () {
+    newMap.initData();
 
-        console.log(newMap);
-
-        // newMap.initData();
-
-        newMap.drawBall();
-    })
+    newMap.drawBall();
 
 
 
