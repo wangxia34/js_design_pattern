@@ -1,12 +1,10 @@
 module.exports = {
     "env": {
-        "browser": true,
-        "es6": true
+        "browser": true
     },
     // "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 2015,
-        "sourceType": "module"
+        "ecmaVersion": 5
     },
     "rules": {
         "no-console": "off",
@@ -21,7 +19,7 @@ module.exports = {
         // 注释 // 或 /* 必须跟随至少一个空白
         "spaced-comment": ["error", "always"],
         // 一元操作符前后是否需要加空格，单词类操作符需要加，而非单词类操作符不用加
-        "space-unary-ops": [2, { "words": true, "nonwords": false }],
+        "space-unary-ops": [2, {"words": true, "nonwords": false}],
         // 操作符前后需要加空格
         "space-infix-ops": 2,
         // 禁止圆括号内有空格
@@ -61,6 +59,8 @@ module.exports = {
         // 要求逗号放在数组元素、对象属性或变量声明之后，且在同一行
         "comma-style": ["error", "last"],
         // 要求在逗号前无空格，逗号后有空格
-        "comma-spacing": "error"
+        "comma-spacing": "error",
+    
+        "no-unused-vars": ["error", {"vars": "local"}]
     }
 };

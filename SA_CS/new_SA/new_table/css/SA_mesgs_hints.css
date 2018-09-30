@@ -31,6 +31,7 @@ input, select, textarea {
     width: 100%;
     margin: 0 auto;
     height: auto;
+    overflow: hidden;
 }
 .list-panel-title {
     min-height: 35px;
@@ -134,19 +135,71 @@ input, select, textarea {
     text-align: center;
 }
 .rule-listbh tr {
-    border-bottom-color: #3f607d;
-    border-bottom-style: double;
-    border-bottom-width: thin;
+    border-bottom: thin double #3f607d;
     line-height: 40px;
 }
 .rule-listb tr {
-    border-bottom-color: #223744;
-    border-bottom-style: dashed;
-    border-bottom-width: thin;
+    border-bottom: thin dashed #223744;
 }
 .rule-listb td {
     color: rgb(210, 210, 210);
 }
 tbody tr.num-line:hover {
     background-color: #333;
+}
+.num-line-action{
+    background-color: #333;
+}
+.action-image {
+    width: 16px;
+    min-width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: none;
+}
+
+.iconfont{
+    margin-right: 5px;
+}
+.paging-tool-text {
+    width: 30px;
+    min-width: 30px;
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+}
+.paging-text {
+    display: block;
+    float: left;
+    min-width: 100px;
+    text-align: center;
+    line-height: 25px;
+}
+.paging-tools .iconfont {
+    display: block;
+    float: left;
+    font-size: 14px;
+    margin: 0 2px;
+    height: 25px;
+    line-height: 25px;
+    cursor: pointer;
+    color: rgb(117, 114, 114);
+}
+.paging-tools .paging-enabled {
+    color: #FF5722;
+}
+.paging-tools .refresh {
+    color: #FF5722;
+}
+.paging-tools span {
+    font-size: 12px;
+}
+
+
+
+/* 公用 */
+.align-center {
+    text-align: center;
+    padding-top: 1px;
 }

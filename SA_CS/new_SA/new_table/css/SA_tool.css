@@ -129,14 +129,19 @@ button {
 
 
 /* mesg 提示样式-----start */
+.icon-dengdai, .icon-dengdai1{
+    color: #3365C7;
+}
+/* waiting_mesg start */
 .popup-waiting-cover {
     width: 100%;
     height: 100%;
+    cursor: wait;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #171717;
-    opacity: 0.3;
+    background-color: #202020;
+    opacity: 0.4;
     z-index: 200;
 }
 .popup-waiting-mesg-box {
@@ -146,6 +151,7 @@ button {
     margin: -110px 0 0 -50px;
     width: 100px;
     height: 100px;
+    cursor: wait;
     padding: 0;
     background-color: inherit;
     border: none;
@@ -154,24 +160,113 @@ button {
 }
 .popup-waiting-mesg-box img {
     position: fixed;
-
     height: 60px;
-    left:50%;
-    top:45%;
-
-    margin-left:-30px;
+    left: 50%;
+    top: 45%;
+    margin-left: -120px;
+    opacity: 1;
+}
+.popup-waiting-mesg-box i {
+    position: fixed;
+    height: 55px;
+    width: 55px;
+    left: 50%;
+    top: 50%;
+    font-size: 55px;
+    line-height: 55px;
+    cursor: wait;
+    margin: -38px 0 0 -30px;
+    opacity: 1;
+    -webkit-animation: spin 1s linear 1s 5 alternate;
+    animation: spin 1.5s linear infinite;
+}
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 .popup-waiting-mesg-text {
     position: absolute;
-    color: #fff;
+    left: -45px;
+    top: 100px;
     font-weight: bold;
+    cursor: wait;
+    color: #D8D8D8;
     font-size: 14px;
     height: 100px;
-    width: 100px;
+    width: 200px;
     text-align: center;
     line-height: 100px;
+    padding: 0 0 0 20px;
+    font-family: "微软雅黑", sans-serif;
 }
-
+.popup-waiting-mesg-text span{
+    float:left;
+    position: relative;
+}
+.popup-waiting-mesg-text span:nth-child(1){
+    -webkit-animation:jump 1.5s linear 0s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(2){
+    -webkit-animation:jump 1.5s linear 0.1s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(3){
+    -webkit-animation:jump 1.5s linear 0.2s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(4){
+    -webkit-animation:jump 1.5s linear 0.3s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(5){
+    -webkit-animation:jump 1.5s linear 0.4s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(6){
+    -webkit-animation:jump 1.5s linear 0.5s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(7){
+    -webkit-animation:jump 1.5s linear 0.6s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(8){
+    -webkit-animation:jump 1.5s linear 0.7s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(9){
+    -webkit-animation:jump 1.5s linear 0.8s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(10){
+    -webkit-animation:jump 1.5s linear 0.9s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(11){
+    -webkit-animation:jump 1.5s linear 1s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(12){
+    -webkit-animation:jump 1.5s linear 1.1s infinite alternate;
+}
+.popup-waiting-mesg-text span:nth-child(13){
+    -webkit-animation:jump 1.5s linear 1.2s infinite alternate;
+}
+@-webkit-keyframes jump
+{
+    0%{
+        top: 0;
+    }
+    50%{
+        top: -10px;
+    }
+    100%{
+        top: 0;
+    }
+}
+/* waiting_mesg end */
 .confirm-mesg-div{
     width: 100%;
     height: 100%;

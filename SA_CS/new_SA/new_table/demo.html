@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/SA_tool.css">
     <link rel="stylesheet" href="css/SA_mesgs_hints.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/element.js"></script>
     <script src="js/SA_sugar.js"></script>
@@ -11,11 +12,17 @@
 
     <title>Title</title>
     <style>
-        html,body{
+        html, body {
             width: 100%;
             height: 100%;
             background-color: #000;
             color: #a8a8a8;
+        }
+
+        #list_main_body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -28,59 +35,69 @@
     function abc() {
         console.log('function abc')
     }
+    function acs(e) {
+        console.log(e);
+    }
 
     let list_panel_render = {
         'checkbox': {
-            listeners: {    /* ===可选===，向checkbox增加类似click的外接监听 */
-                click: function( element, data_item, list_obj ) {
-                    if ( element.checked ) {
-                        alert( data_item.id + "chcked!" );
-                    } else {
-                        alert( data_item.id + "unchcked!" );
-                    }
-                }
-            }
-        },
-        'radio': {      /* ===可选===，向radio增加类似click的外接监听 */
             listeners: {
-                click: function( element, data_item, event, list_obj ) {
-                    if ( element.checked ) {
-                        alert( data_item.id + "chcked!" );
+                /* ===可选===，向checkbox增加类似click的外接监听 */
+                click: function (element, data_item, list_obj) {
+                    if (element.checked) {
+                        alert(data_item.id + "chcked!");
                     } else {
-                        alert( data_item.id + "unchcked!" );
+                        alert(data_item.id + "unchcked!");
                     }
                 }
             }
         },
-        'classification': {
-            render: function( default_rendered_text, data_item ) {
+        'radio': {
+            /* ===可选===，向radio增加类似click的外接监听 */
+            listeners: {
+                click: function (element, data_item, event, list_obj) {
+                    if (element.checked) {
+                        alert(data_item.id + "chcked!");
+                    } else {
+                        alert(data_item.id + "unchcked!");
+                    }
+                }
+            }
+        },
+        'name': {
+            render: function (default_rendered_text, data_item) {
+                // console.log(default_rendered_text);
+                // console.log(data_item);
                 return '<span class="note">' + default_rendered_text + "--" + data_item.id + '</span>';
             }
         },
         'action': {
-            render: function( default_rendered_text, data_item ) {
-                return default_rendered_text;
-                var action_buttons = [{
+            render: function (default_rendered_text, data_item) {
+                // console.log(default_rendered_text);
+                // console.log(data_item.id);
+                let action_buttons = [{
                     enable: true,
                     id: "delete_all_logs",
                     name: "delete_all_logs",
                     cls: "",
-                    button_icon: "search16x16.png",
-                    button_text: "查看详情",
+                    icon: "images/search16x16.png",
+                    text: "查看详情",
                     value: data_item.id,
                     functions: {
                         onclick: "alert(this.value);"
                     }
                 }];
 
-                return PagingHolder.create_action_buttons( action_buttons );
+                // return "111";
+
+                return SATable.create_action_buttons(action_buttons);
             }
         }
     };
 
 
     let list_panel_config = {
-        url: "/cgi-bin/list_panel.cgi",
+        url: "data/Data.json",
         parentId: "list_main_body",
         panelName: "list_panel",
         pageSize: 15,
@@ -97,15 +114,16 @@
             inputTip: "输入关键字以查询...",
             title: "某字段关键字"
         },
+        identifier: "wid",
         isPagingTools: true,
         isLoadAllData: true,
         render: list_panel_render,
         check_obj: null,
         eventHandler: {
-            before_load_data: function( list_obj ) {
+            beforeLoadData: function (list_obj) {
 
             },
-            after_load_data: function ( list_obj, response ) {
+            afterLoadData: function (list_obj, response) {
 
             }
         },
@@ -123,7 +141,7 @@
                 }
             },
             {
-                enable: false,
+                enable: true,
                 type: "radio",
                 title: "填啥都是‘请选择’",
                 name: "radio",
@@ -133,24 +151,25 @@
             {
                 enable: true,
                 type: "text",
-                title: "发生时间",
-                name: "time_start",
+                title: "名称",
+                name: "name",
                 width: "15%"
             },
             {
                 enable: true,
                 type: "text",
                 title: "入侵信息",
-                width: "30%",           /* 这里宽度不起决定性作用 */
-                children: [{            /* 支持两层标题套用 */
+                width: "30%", /* 这里宽度不起决定性作用 */
+                children: [{
+                    /* 支持两层标题套用 */
                     type: "text",
                     title: "入侵描述",
-                    name: "msg",
+                    name: "cache_page",
                     width: "15%"        /* 最终决定宽度的是子节点 */
                 }, {
                     type: "text",
                     title: "入侵类型",
-                    name: "classification",
+                    name: "record",
                     columnCls: "align-center",
                     width: "15%"        /* 最终决定宽度的是子节点 */
                 }]
@@ -159,7 +178,7 @@
                 enable: true,
                 type: "text",
                 title: "危险级别",
-                name: "priority",
+                name: "url",
                 columnCls: "align-center",
                 width: "10%"
             },
@@ -167,14 +186,14 @@
                 enable: true,
                 type: "text",
                 title: "源",
-                name: "sip",
+                name: "ip",
                 width: "15%"
             },
             {
                 enable: true,
                 type: "text",
                 title: "目标",
-                name: "dip",
+                name: "department",
                 width: "15%"
             },
             {
@@ -226,7 +245,10 @@
                 id: "stop_refresh",
                 name: "stop_refresh",
                 cls: "",
-                text: "停止刷新"
+                text: "停止刷新",
+                functions: {
+                    onclick: "abc(this)"
+                }
             }, {
                 enable: true,
                 type: "select",
@@ -240,43 +262,45 @@
             }
         ],
         bottomWidgets: [
-            {                  /* ===可选===，在面板左下角位置的控件组，创建方式类似top_widgets */
+            {
                 enable: true,
-                type: "link_button",
+                type: "imageButton",
                 id: "export_selected",
                 name: "export_selected",
-                href: "showca.cgi?type=pem",
-                button_icon: "download.png",
-                button_text: "导出选中",
+                cls: "",
+                icon: "images/search16x16.png",
+                text: "导出选中",
                 functions: {
-                    onclick: "export_selected_items(this)"
+                    onclick: "abc(this)"
                 }
             }, {
                 enable: true,
-                type: "image_button",
+                type: "imageButton",
                 id: "delete_all_logs",
                 name: "delete_all_logs",
                 cls: "",
-                button_icon: "delete.png",
-                button_text: "清空日志",
+                icon: "images/search16x16.png",
+                text: "清空日志",
                 functions: {
-                    onclick: "delete_all_logs(this)"
+                    onclick: "abc(this)"
                 }
             }
         ],
         extend_search: [
-            {               /* ===可选===，定义额外的搜索筛选条件，位置在面板右上角，控件类似top_widgets中控件 */
-                enable: true,               /* ==可选==，如果为不填或者为false,就不显示*/
-                type: "select",             /* ==可选==，默认为text类型 */
-                id: "statistical_pattern",  /* ==可选==，控件ID */
-                name: "statistical_pattern",/* **必填**，控件的名字 */
-                title: "统计方式",          /* **必填**，输入控件前面的提示信息，没有会导致用户迷糊 */
-                cls: "",                    /* ==可选==，控件本身样式的类名，会覆盖默认类的属性 */
-                multiple: false,            /* ==可选==，select组件特有 */
+            {
+                /* ===可选===，定义额外的搜索筛选条件，位置在面板右上角，控件类似top_widgets中控件 */
+                enable: true, /* ==可选==，如果为不填或者为false,就不显示*/
+                type: "select", /* ==可选==，默认为text类型 */
+                id: "statistical_pattern", /* ==可选==，控件ID */
+                name: "statistical_pattern", /* **必填**，控件的名字 */
+                title: "统计方式", /* **必填**，输入控件前面的提示信息，没有会导致用户迷糊 */
+                cls: "", /* ==可选==，控件本身样式的类名，会覆盖默认类的属性 */
+                multiple: false, /* ==可选==，select组件特有 */
                 functions: {
                     onchange: "alert(this.value);"
                 },
-                options: [{                 /* ==可选==，select组件特有 */
+                options: [{
+                    /* ==可选==，select组件特有 */
                     id: "s_ip",
                     name: "s_ip",
                     cls: "test_class",
@@ -289,10 +313,11 @@
                     value: "s_port",
                     text: "按服务端口统计"
                 }],
-                check: {                    /* ==可选==，如果定义了检测项，在查询之前要检查通过才能查询 */
+                check: {
+                    /* ==可选==，如果定义了检测项，在查询之前要检查通过才能查询 */
                     type: 'select-one',
                     required: 1,
-                    ass_check: function( check ){
+                    ass_check: function (check) {
 
                     }
                 }
@@ -305,12 +330,12 @@
                 cls: "",
                 value: 15,
                 check: {
-                    type:'text',
+                    type: 'text',
                     required: 1,
                     check: 'int|',
-                    ass_check: function(){
-                        var val = $( "#page_size" ).val();
-                        if( val > 100 || val < 10 ) {
+                    ass_check: function () {
+                        var val = $("#page_size").val();
+                        if (val > 100 || val < 10) {
                             return "输入10-100之间的整数";
                         }
                     }
@@ -331,53 +356,60 @@
         actions: {
             /* ===可选===，如果想在点击默认渲染的按钮外接自己的函数时可以使用这里的接口，
                                             根据经验来看，这里的接口使用得很少，因为可以用render方案替代 */
-            enable_button: function( data_item ) {
+            enable_button: function (data_item) {
                 alert("外部函数enable-" + data_item.id);
             },
-            disable_button: function( data_item ) {
+            disable_button: function (data_item) {
                 alert("外部函数disable-" + data_item.id);
             },
-            eidt_button: function( data_item ) {
+            eidt_button: function (data_item) {
                 alert("外部函数eidt-" + data_item.id);
             },
-            delete_button: function( data_item ) {
+            delete_button: function (data_item) {
                 alert("外部函数delete-" + data_item.id);
             },
-            edit_item: function( data_item, on_finished ) {
+            edit_item: function (data_item, on_finished) {
                 /* 开始书写自己的代码 */
                 alert("外部函数eidt-正在编辑" + paging_holder.selected_item);
             }
         },
-        bottom_extend_widgets: {        /* ===可选===，定义放在底部的按钮 */
+        bottomExtendWidgets: {
             id: "",
             name: "",
             cls: "align-center",
             sub_items: [{
                 enable: true,
-                type: "image_button",
+                type: "button",
                 cls: "",
-                button_text: "确定",
+                text: "确定",
                 functions: {
-                    onclick: "show_mesg_when_ok();"
+                    onclick: "abc();"
                 }
             }, {
                 enable: true,
-                type: "image_button",
+                type: "button",
                 cls: "",
-                button_text: "取消",
+                text: "取消",
                 style: "margin-top: 5px;margin-bottom: 5px;",
                 functions: {
-                    onclick: ""
+                    onclick: "abc()"
                 }
             }]
         }
     };
 
-    let newTabel = new SATable( list_panel_config );
+    let newTabel = new SATable(list_panel_config);
 
     newTabel.render();
 
-    console.log(newTabel);
+    newTabel.redraw();
+    $(window).resize(function () {
+        newTabel.redraw();
+    });
+
+    newTabel.updateInfo(true);
+
+
 
 
     //dom
@@ -392,8 +424,6 @@
     });
     $("#list_main_body").append(elem.render());
     */
-
-
 
 
 </script>

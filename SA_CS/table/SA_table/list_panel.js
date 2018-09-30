@@ -734,6 +734,7 @@ PagingHolder.prototype.update_info = function( refresh, paging_action ) {
             return;
         }
     }
+    
     /*第一步,根据配置，判断是否重新加载数据*/
     if( !paging_holder.is_load_all_data || refresh ) {
         /***************首先判断能否进行刷新******************/
@@ -796,7 +797,7 @@ PagingHolder.prototype.init_check_input_data = function() {
 PagingHolder.prototype.is_input_data_correct = function() {
     var paging_holder = this;
 
-    /*默认没有要检查的数据，给予通过*/
+    /* 默认没有要检查的数据，给予通过 */
     var check_result = true;
     var check_obj = paging_holder.panel_config.check_obj;
     var search_check_obj = paging_holder.get_search_input_check_obj();
@@ -900,14 +901,14 @@ PagingHolder.prototype.get_search_keys = function() {
     var paging_holder = this;
     var searching_data = {};
 
-    /*加入普通查询条件*/
+    /* 加入普通查询条件 */
     var search_key_selector = "#" + paging_holder.search_key_id;
-    if( $( search_key_selector ).length > 0 ) {
+    if ($( search_key_selector ).length > 0) {
         var search = $( search_key_selector ).val();
         searching_data.search = search;
     }
 
-    /*加入扩展查询条件*/
+    /* 加入扩展查询条件 */
     var extend_search_selector = "." + paging_holder.extend_search_class;
     var extend_search = $( extend_search_selector );
     extend_search.each( function() {
@@ -1519,7 +1520,7 @@ PagingHolder.prototype.init_paging_tools_variable = function() {
     paging_holder.display_cols    = paging_holder.get_display_cols();
     paging_holder.is_load_all_data  = panel_config.is_load_all_data !== undefined ? panel_config.is_load_all_data : true; /*默认加载所有数据，不分页加载*/
 
-    /*目前没有考虑到的将要传输给服务器的扩展数据*/
+    /* 目前没有考虑到的将要传输给服务器的扩展数据 */
     paging_holder.extend_sending_data = {};
 }
 
@@ -2780,15 +2781,15 @@ PagingHolder.get_sub_str = function( str, start, num ) {
 
 }
 
-/*添加title属性显示隐藏内容*/
+/* 添加title属性显示隐藏内容 */
 PagingHolder.prototype.contextHidden = function() {
     var p = this;
     $("#" + p.panel_id + " td.contentHidden").each(function() {
         if (this.offsetWidth < this.scrollWidth) {
-            //处理title内容
+            // 处理title内容
             var tex = $(this).text();
             $(this).attr("title", tex);
-        }else {
+        } else {
             $(this).attr("title", "");
         }
     });

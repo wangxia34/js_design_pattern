@@ -60,7 +60,6 @@
     }
     
     createTool = {
-        
         checkbox: function (item) {
             let contentBody;
     
@@ -273,21 +272,21 @@
                 inputProps;
             
             contentBody = {
-                tagName: 'button',
+                tagName: "button",
                 props: {
-                    class: 'imaged-button'
+                    class: "imaged-button"
                 },
                 children: [
                     {
-                        tagName: 'img',
+                        tagName: "img",
                         props: {
-                            class: 'button-image',
-                            src: item.icon ? item.icon : ''
+                            class: "button-image",
+                            src: item.icon ? item.icon : ""
                         }
                     }, {
-                        tagName: 'span',
+                        tagName: "span",
                         props: {
-                            class: 'button-text'
+                            class: "button-text"
                         },
                         children: [item.text]
                     }
@@ -300,36 +299,51 @@
             item.name   ? inputProps.name   = item.name : true;
             item.cls    ? inputProps.class  = item.cls  : true;
     
-            if(item.functions){
-                $.each(item.functions,function (key,value) {
+            if (item.functions) {
+                $.each(item.functions, function(key, value) {
                     inputProps[key] = value;
-                })
+                });
             }
     
             return Element(contentBody).render();
         }
-        
-        
     };
-    
-    
     
     function create_waiting_mesg_box() {
         let mesg_box;
         
         mesg_box = {
-            tagName: 'div',
+            tagName: "div",
             props: {
-                'id': 'waiting-mesg-box'
+                "id": "waiting-mesg-box"
             },
             children: [{
-                tagName: 'div',
-                props: {'class': 'popup-waiting-cover'}
+                tagName: "div",
+                props: {"class": "popup-waiting-cover"}
             }, {
-                tagName: 'div',
-                props: {'class': 'popup-waiting-mesg-box'},
+                tagName: "div",
+                props: {"class": "popup-waiting-mesg-box"},
                 children: [
-                    Element({tagName: 'img', props: {'src': './images/009.gif'}})
+                    Element({tagName: "i", props: {"class": "icon iconfont icon-dengdai1"}}),
+                    {
+                        tagName: "div",
+                        props: {"class": "popup-waiting-mesg-text"},
+                        children: [
+                            {tagName: "span", children: ["正"]},
+                            {tagName: "span", children: ["在"]},
+                            {tagName: "span", children: ["请"]},
+                            {tagName: "span", children: ["求"]},
+                            {tagName: "span", children: ["数"]},
+                            {tagName: "span", children: ["据"]},
+                            {tagName: "span", children: ["，"]},
+                            {tagName: "span", children: ["请"]},
+                            {tagName: "span", children: ["稍"]},
+                            {tagName: "span", children: ["等"]},
+                            {tagName: "span", children: ["."]},
+                            {tagName: "span", children: ["."]},
+                            {tagName: "span", children: ["."]}
+                        ]
+                    }
                 ]
             }]
         };
@@ -337,7 +351,7 @@
         return Element(mesg_box).render();
     }
     
-    function create_alert_mesg_box(mesg,color_style) {
+    function create_alert_mesg_box(mesg, color_style) {
         let mesg_box;
     
         mesg_box = {
@@ -390,7 +404,7 @@
         return Element(mesg_box).render();
     }
     
-    function create_confirm_mesg_box(mesg,color_style) {
+    function create_confirm_mesg_box(mesg, color_style) {
         let mesg_box;
     
         mesg_box = {
@@ -461,18 +475,18 @@
         createTool: createTool,
         
         waitingMesgs: function(show) {
-            if(show){
-                if($("#waiting-mesg-box").length > 0) {
+            if (show) {
+                if ($("#waiting-mesg-box").length > 0) {
                     $("#waiting-mesg-box").show();
                 } else {
-                    $('body').append(create_waiting_mesg_box());
+                    $("body").append(create_waiting_mesg_box());
                 }
-            }else{
+            } else {
                 $("#waiting-mesg-box").hide();
             }
         },
     
-        alertMesg: function(mesg,color_style,callback_OK){
+        alertMesg: function(mesg, color_style, callback_OK){
         
             if(!callback_OK){
                 if(color_style && typeof color_style === "function" ){
@@ -497,7 +511,7 @@
         
         },
     
-        confirmMesg: function(mesg,color_style,callback_OK,callback_CANCEL){
+        confirmMesg: function(mesg, color_style, callback_OK, callback_CANCEL){
         
             if(!callback_OK && !callback_CANCEL){
                 if(color_style && typeof color_style === "function" ){
@@ -532,36 +546,41 @@
     
     };
     
-    //AJAX异步请求数据
+    // AJAX异步请求数据
     function ajaxRequest(url, data, callBack, type, async) {
-        
-        if(typeof type === "boolean" && !async){
-            async = type;
-            type = undefined;
-        }
-        
-        let obj = {
+        let obj, ajaxRequest;
+        obj = {
             type: "post",
             url: url,
             data: data,
+            timeout: 90000, // 超时时间设置，单位毫秒
             success: callBack,
-            error: function(error) {
+            error: function () {
+                if (typeof hide_waiting_mesg === "function") {
+                    SA.waitingMesgs(false);
+                }
                 SA.alertMesg("ajax请求出错！");
+            },
+            complete: function(XMLHttpRequest, status) { // 请求完成后最终执行参数
+                if (status === "timeout") { // 超时,status还有success,error等值的情况
+                    ajaxRequest.abort();
+                    SA.alertMesg("请求超时！");
+                    if (typeof hide_waiting_mesg === "function") {
+                        SA.waitingMesgs(false);
+                    }
+                }
             }
         };
-        if(async) {
-            obj.async = false;
-        }
-        if(type) {
+        if (type) {
             obj.dataType = type;
         } else {
             obj.dataType = "json";
         }
-        
-        $.ajax(obj);
+    
+        ajaxRequest = $.ajax(obj);
     }
     
-    $.extend(SA.prototype,{
+    $.extend(SA.prototype, {
         
         postRequest: function (url, data, callBack, type, async) {
             ajaxRequest(url, data, callBack, type, async);
@@ -570,12 +589,18 @@
     });
     
     
-   
     
     
+    let isDOM = (typeof HTMLElement === "object") ?
+        function(obj) {
+            return obj instanceof HTMLElement;
+        } :
+        function(obj) {
+            return obj && typeof obj === "object" && obj.nodeType === 1 && typeof obj.nodeName === "string";
+        };
     
     
-    $.extend(SA.prototype,{
+    $.extend(SA.prototype, {
     
         isDOM: isDOM
     

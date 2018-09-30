@@ -45,7 +45,7 @@ var list_panel_render = {
         }
     },
     'action': {
-        render: function( default_rendered_text, data_item ) {
+        render: function(default_rendered_text, data_item) {
             return default_rendered_text;
             var action_buttons = [{
                 enable: true,
