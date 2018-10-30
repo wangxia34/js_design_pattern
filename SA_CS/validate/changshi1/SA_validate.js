@@ -277,21 +277,6 @@
                 this.prepareElement(cleanElement);
                 this.currentElements = $(cleanElement);
                 
-                /*
-                group = this.groups[ cleanElement.name ];
-                if ( group ) {
-                    $.each( this.groups, function( name, testgroup ) {
-                        if ( testgroup === group && name !== cleanElement.name ) {
-                            cleanElement = v.validationTargetFor( v.clean( v.findByName( name ) ) );
-                            if ( cleanElement && cleanElement.name in v.invalid ) {
-                                v.currentElements.push( cleanElement );
-                                result = v.check( cleanElement ) && result;
-                            }
-                        }
-                    } );
-                }
-                */
-                
                 rs = this.check(cleanElement) !== false;
                 
                 result = result && rs;
@@ -392,7 +377,6 @@
                 });
                 
                 this.errorMap[element.name] = message;
-                // this.submitted[ element.name ] = message;
             },
             
             // 默认的显示信息
@@ -620,10 +604,13 @@
             findByName: function (name) {
                 return $(this.currentForm).find("[name='" + this.escapeCssMeta(name) + "']");
             },
+    
+            checkable: function (element) {
+                return (/radio|checkbox/i).test(element.type);
+            },
             
             // 获得长度
             getLength: function (value, element) {
-                /*
                 switch ( element.nodeName.toLowerCase() ) {
                     case "select":
                         return $( "option:selected", element ).length;
@@ -632,7 +619,7 @@
                             return this.findByName( element.name ).filter( ":checked" ).length;
                         }
                 }
-                */
+                
                 return value.length;
             },
             
@@ -803,6 +790,13 @@
             
             // 是否必填 required：true
             required: function (value, element, param) {
+                if (element.nodeName.toLowerCase() === "select") {
+                    let val = $(element).val();
+                    return val && val.length > 0;
+                }
+                if (this.checkable(element)) {
+                    return this.getLength(value, element) > 0;
+                }
                 return value.length > 0;
             },
             

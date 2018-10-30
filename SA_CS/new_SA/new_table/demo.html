@@ -66,15 +66,11 @@
         },
         'name': {
             render: function (default_rendered_text, data_item) {
-                // console.log(default_rendered_text);
-                // console.log(data_item);
                 return '<span class="note">' + default_rendered_text + "--" + data_item.id + '</span>';
             }
         },
         'action': {
             render: function (default_rendered_text, data_item) {
-                // console.log(default_rendered_text);
-                // console.log(data_item.id);
                 let action_buttons = [{
                     enable: true,
                     id: "delete_all_logs",
@@ -87,8 +83,6 @@
                         onclick: "alert(this.value);"
                     }
                 }];
-
-                // return "111";
 
                 return SATable.create_action_buttons(action_buttons);
             }

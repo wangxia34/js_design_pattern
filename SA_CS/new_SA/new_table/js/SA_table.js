@@ -881,10 +881,10 @@ $.extend(SATable, {
         
         /* 页面刷新的时候重置全选按钮 */
         resetControlCheckbox: function() {
-            var paging_holder = this;
-        
-            var control_checkbox_id = paging_holder.control_checkbox_id;
-            var control_checkbox_selector = "#" + paging_holder.control_checkbox_id;
+            let paging_holder = this;
+    
+            let control_checkbox_id = paging_holder.control_checkbox_id;
+            let control_checkbox_selector = "#" + paging_holder.control_checkbox_id;
             if( $( control_checkbox_selector ).length > 0 ) {
                 document.getElementById( control_checkbox_id ).checked = false;
             }
