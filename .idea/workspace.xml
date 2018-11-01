@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="035ddacc-fb1d-46cb-b0ef-17a3b7a67cdd" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/duck/demo/Tween.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/duck/demo/three.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/duck/demo/threejs获取焦点.html" />
-      <change beforePath="$PROJECT_DIR$/SA_CS/new_SA/new_table/demo.html" afterPath="$PROJECT_DIR$/SA_CS/new_SA/new_table/demo.html" />
-      <change beforePath="$PROJECT_DIR$/SA_CS/new_SA/new_table/js/SA_table.js" afterPath="$PROJECT_DIR$/SA_CS/new_SA/new_table/js/SA_table.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/SA_CS/validate/changshi1/SA_validate.js" afterPath="$PROJECT_DIR$/SA_CS/validate/changshi1/SA_validate.js" />
+      <change beforePath="$PROJECT_DIR$/SA_CS/validate/changshi1/demo1.html" afterPath="$PROJECT_DIR$/SA_CS/validate/changshi1/demo1.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,20 +51,18 @@
       <file leaf-file-name="demo1.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/demo1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-              <folding>
-                <element signature="e#1740#3124#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="1826">
+              <caret line="95" column="13" lean-forward="true" selection-start-line="95" selection-start-column="13" selection-end-line="95" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery.validate.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jquery.validate.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/jquery.validate.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="420" column="33" lean-forward="false" selection-start-line="420" selection-start-column="24" selection-end-line="420" selection-end-column="33" />
+            <state relative-caret-position="9284">
+              <caret line="429" column="82" lean-forward="false" selection-start-line="429" selection-start-column="74" selection-end-line="429" selection-end-column="82" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -80,19 +73,55 @@
       <file leaf-file-name="SA_validate.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/SA_validate.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="260" column="39" lean-forward="false" selection-start-line="260" selection-start-column="39" selection-end-line="260" selection-end-column="39" />
+            <state relative-caret-position="210">
+              <caret line="81" column="26" lean-forward="false" selection-start-line="81" selection-start-column="15" selection-end-line="81" selection-end-column="26" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <element signature="e#67#234#0" expanded="false" />
+                <element signature="e#273#353#0" expanded="false" />
+                <element signature="e#408#803#0" expanded="false" />
+                <element signature="e#840#1009#0" expanded="false" />
+                <element signature="e#1161#1372#0" expanded="false" />
+                <element signature="e#1413#1506#0" expanded="false" />
+                <element signature="e#1577#1668#0" expanded="false" />
+                <element signature="e#10412#11184#0" expanded="false" />
+                <element signature="e#11285#11618#0" expanded="false" />
+                <element signature="e#11703#11952#0" expanded="false" />
+                <element signature="e#12227#13079#0" expanded="false" />
+                <element signature="e#13190#13534#0" expanded="false" />
+                <element signature="e#13615#14716#0" expanded="false" />
+                <element signature="e#14773#14844#0" expanded="false" />
+                <element signature="e#14927#15307#0" expanded="false" />
+                <element signature="e#15380#15431#0" expanded="false" />
+                <element signature="e#15485#15539#0" expanded="false" />
+                <element signature="e#15594#15865#0" expanded="false" />
+                <element signature="e#15911#16011#0" expanded="false" />
+                <element signature="e#16098#16198#0" expanded="false" />
+                <element signature="e#16288#16376#0" expanded="false" />
+                <element signature="e#16463#16598#0" expanded="false" />
+                <element signature="e#16693#19073#0" expanded="false" />
+                <element signature="e#19152#19306#0" expanded="false" />
+                <element signature="e#19390#19620#0" expanded="false" />
+                <element signature="e#19706#19810#0" expanded="false" />
+                <element signature="e#19890#19985#0" expanded="false" />
+                <element signature="e#20095#20282#0" expanded="false" />
+                <element signature="e#20365#20705#0" expanded="false" />
+                <element signature="e#20776#22863#0" expanded="false" />
+                <element signature="e#22952#23061#0" expanded="false" />
+                <element signature="e#23110#23188#0" expanded="false" />
+                <element signature="e#23272#23740#0" expanded="false" />
+                <element signature="e#23855#24028#0" expanded="false" />
+                <element signature="e#24095#24753#0" expanded="false" />
+                <element signature="e#25124#25749#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SA_table.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SA_table.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SA_CS/new_SA/new_table/js/SA_table.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
+            <state relative-caret-position="-4391">
               <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="13" />
               <folding>
                 <element signature="e#1644#3638#0" expanded="false" />
@@ -171,8 +200,22 @@
       <find>findByName</find>
       <find>formatAndAdd</find>
       <find>delegate</find>
-      <find>checkable</find>
       <find>validate</find>
+      <find>checkable</find>
+      <find>showLabel</find>
+      <find>errorPlacement</find>
+      <find>labelContainer</find>
+      <find>errorLabelContainer</find>
+      <find>prepareForm</find>
+      <find>containers</find>
+      <find>valid</find>
+      <find>valid:</find>
+      <find>submitted</find>
+      <find>invalidHandler</find>
+      <find>normalizeRule</find>
+      <find>this.settings.rules</find>
+      <find>rules</find>
+      <find>console.log</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,6 +227,7 @@
         <option value="$PROJECT_DIR$/duck/demo/demo.html" />
         <option value="$PROJECT_DIR$/SA_CS/new_SA/new_table/js/SA_table.js" />
         <option value="$PROJECT_DIR$/SA_CS/new_SA/new_table/demo.html" />
+        <option value="$PROJECT_DIR$/SA_CS/validate/changshi1/demo1.html" />
         <option value="$PROJECT_DIR$/SA_CS/validate/changshi1/SA_validate.js" />
       </list>
     </option>
@@ -201,10 +245,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="20" />
-    <option name="y" value="20" />
-    <option name="width" value="1400" />
-    <option name="height" value="820" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -221,7 +265,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -291,19 +334,21 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/风控项目/10yue" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\GitMy\js_design_pattern\SA_CS\validate\changshi1" />
       <recent name="E:\GitMy\js_design_pattern\duck\demo" />
     </key>
   </component>
@@ -338,27 +383,30 @@
       <workItem from="1539237195597" duration="613000" />
       <workItem from="1539305395521" duration="626000" />
       <workItem from="1540800161685" duration="349000" />
-      <workItem from="1540890737204" duration="3469000" />
+      <workItem from="1540890737204" duration="3765000" />
+      <workItem from="1540950623610" duration="2099000" />
+      <workItem from="1540952732372" duration="3397000" />
+      <workItem from="1541034048695" duration="1462000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10146000" />
+    <option name="totallyTimeSpent" value="17400000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1539924" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1641318" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -375,10 +423,330 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/jquery.validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9284">
+          <caret line="429" column="82" lean-forward="false" selection-start-line="429" selection-start-column="74" selection-end-line="429" selection-end-column="82" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/SA_validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11176">
+          <caret line="512" column="41" lean-forward="false" selection-start-line="512" selection-start-column="35" selection-end-line="512" selection-end-column="41" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/new_SA/new_table/js/SA_table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="13" />
+          <folding>
+            <element signature="e#1644#3638#0" expanded="false" />
+            <element signature="e#3677#3757#0" expanded="false" />
+            <element signature="e#3820#6332#0" expanded="false" />
+            <element signature="e#6401#6844#0" expanded="false" />
+            <element signature="e#6925#7112#0" expanded="false" />
+            <element signature="e#7199#9317#0" expanded="false" />
+            <element signature="e#9410#9695#0" expanded="false" />
+            <element signature="e#9763#10014#0" expanded="false" />
+            <element signature="e#10082#10318#0" expanded="false" />
+            <element signature="e#10413#11477#0" expanded="false" />
+            <element signature="e#11541#11777#0" expanded="false" />
+            <element signature="e#11846#12097#0" expanded="false" />
+            <element signature="e#12154#12349#0" expanded="false" />
+            <element signature="e#12399#13007#0" expanded="false" />
+            <element signature="e#13048#15085#0" expanded="false" />
+            <element signature="e#15587#15792#0" expanded="false" />
+            <element signature="e#15871#17172#0" expanded="false" />
+            <element signature="e#17254#18567#0" expanded="false" />
+            <element signature="e#18694#18988#0" expanded="false" />
+            <element signature="e#19175#19488#0" expanded="false" />
+            <element signature="e#19680#20050#0" expanded="false" />
+            <element signature="e#20152#20348#0" expanded="false" />
+            <element signature="e#20432#21923#0" expanded="false" />
+            <element signature="e#22002#22365#0" expanded="false" />
+            <element signature="e#22443#22800#0" expanded="false" />
+            <element signature="e#22876#23245#0" expanded="false" />
+            <element signature="e#23320#23683#0" expanded="false" />
+            <element signature="e#23763#27152#0" expanded="false" />
+            <element signature="e#27281#28079#0" expanded="false" />
+            <element signature="e#28154#28601#0" expanded="false" />
+            <element signature="e#28686#30169#0" expanded="false" />
+            <element signature="e#30245#31497#0" expanded="false" />
+            <element signature="e#31570#32052#0" expanded="false" />
+            <element signature="e#32130#32389#0" expanded="false" />
+            <element signature="e#32469#32837#0" expanded="false" />
+            <element signature="e#32924#33626#0" expanded="false" />
+            <element signature="e#33678#34736#0" expanded="false" />
+            <element signature="e#34800#36154#0" expanded="false" />
+            <element signature="e#36197#36686#0" expanded="false" />
+            <element signature="e#36733#37587#0" expanded="false" />
+            <element signature="e#37635#42220#0" expanded="false" />
+            <element signature="e#42283#43034#0" expanded="false" />
+            <element signature="e#43078#45758#0" expanded="false" />
+            <element signature="e#45798#46450#0" expanded="false" />
+            <element signature="e#46492#47501#0" expanded="false" />
+            <element signature="e#47551#47873#0" expanded="false" />
+            <element signature="e#47935#49364#0" expanded="false" />
+            <element signature="e#49432#51038#0" expanded="false" />
+            <element signature="e#51092#52755#0" expanded="false" />
+            <element signature="e#52793#53489#0" expanded="false" />
+            <element signature="e#53538#54099#0" expanded="false" />
+            <element signature="e#54295#55724#0" expanded="false" />
+            <element signature="e#55750#57519#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/demo1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2420">
+          <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/duck/demo/threejs获取焦点.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1452">
+          <caret line="66" column="39" lean-forward="false" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/new_SA/new_table/demo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="968">
+          <caret line="44" column="47" lean-forward="false" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/demo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/demo1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2420">
+          <caret line="110" column="0" lean-forward="true" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/SA_validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11264">
+          <caret line="512" column="41" lean-forward="false" selection-start-line="512" selection-start-column="35" selection-end-line="512" selection-end-column="41" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/new_SA/new_table/js/SA_table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="13" />
+          <folding>
+            <element signature="e#1644#3638#0" expanded="false" />
+            <element signature="e#3677#3757#0" expanded="false" />
+            <element signature="e#3820#6332#0" expanded="false" />
+            <element signature="e#6401#6844#0" expanded="false" />
+            <element signature="e#6925#7112#0" expanded="false" />
+            <element signature="e#7199#9317#0" expanded="false" />
+            <element signature="e#9410#9695#0" expanded="false" />
+            <element signature="e#9763#10014#0" expanded="false" />
+            <element signature="e#10082#10318#0" expanded="false" />
+            <element signature="e#10413#11477#0" expanded="false" />
+            <element signature="e#11541#11777#0" expanded="false" />
+            <element signature="e#11846#12097#0" expanded="false" />
+            <element signature="e#12154#12349#0" expanded="false" />
+            <element signature="e#12399#13007#0" expanded="false" />
+            <element signature="e#13048#15085#0" expanded="false" />
+            <element signature="e#15587#15792#0" expanded="false" />
+            <element signature="e#15871#17172#0" expanded="false" />
+            <element signature="e#17254#18567#0" expanded="false" />
+            <element signature="e#18694#18988#0" expanded="false" />
+            <element signature="e#19175#19488#0" expanded="false" />
+            <element signature="e#19680#20050#0" expanded="false" />
+            <element signature="e#20152#20348#0" expanded="false" />
+            <element signature="e#20432#21923#0" expanded="false" />
+            <element signature="e#22002#22365#0" expanded="false" />
+            <element signature="e#22443#22800#0" expanded="false" />
+            <element signature="e#22876#23245#0" expanded="false" />
+            <element signature="e#23320#23683#0" expanded="false" />
+            <element signature="e#23763#27152#0" expanded="false" />
+            <element signature="e#27281#28079#0" expanded="false" />
+            <element signature="e#28154#28601#0" expanded="false" />
+            <element signature="e#28686#30169#0" expanded="false" />
+            <element signature="e#30245#31497#0" expanded="false" />
+            <element signature="e#31570#32052#0" expanded="false" />
+            <element signature="e#32130#32389#0" expanded="false" />
+            <element signature="e#32469#32837#0" expanded="false" />
+            <element signature="e#32924#33626#0" expanded="false" />
+            <element signature="e#33678#34736#0" expanded="false" />
+            <element signature="e#34800#36154#0" expanded="false" />
+            <element signature="e#36197#36686#0" expanded="false" />
+            <element signature="e#36733#37587#0" expanded="false" />
+            <element signature="e#37635#42220#0" expanded="false" />
+            <element signature="e#42283#43034#0" expanded="false" />
+            <element signature="e#43078#45758#0" expanded="false" />
+            <element signature="e#45798#46450#0" expanded="false" />
+            <element signature="e#46492#47501#0" expanded="false" />
+            <element signature="e#47551#47873#0" expanded="false" />
+            <element signature="e#47935#49364#0" expanded="false" />
+            <element signature="e#49432#51038#0" expanded="false" />
+            <element signature="e#51092#52755#0" expanded="false" />
+            <element signature="e#52793#53489#0" expanded="false" />
+            <element signature="e#53538#54099#0" expanded="false" />
+            <element signature="e#54295#55724#0" expanded="false" />
+            <element signature="e#55750#57519#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/jquery.validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9658">
+          <caret line="439" column="96" lean-forward="false" selection-start-line="439" selection-start-column="82" selection-end-line="439" selection-end-column="96" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/duck/demo/threejs获取焦点.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1452">
+          <caret line="66" column="39" lean-forward="false" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/new_SA/new_table/demo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="968">
+          <caret line="44" column="47" lean-forward="false" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/demo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/demo1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1210">
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/SA_validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11176">
+          <caret line="512" column="41" lean-forward="false" selection-start-line="512" selection-start-column="35" selection-end-line="512" selection-end-column="41" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/new_SA/new_table/js/SA_table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="13" />
+          <folding>
+            <element signature="e#1644#3638#0" expanded="false" />
+            <element signature="e#3677#3757#0" expanded="false" />
+            <element signature="e#3820#6332#0" expanded="false" />
+            <element signature="e#6401#6844#0" expanded="false" />
+            <element signature="e#6925#7112#0" expanded="false" />
+            <element signature="e#7199#9317#0" expanded="false" />
+            <element signature="e#9410#9695#0" expanded="false" />
+            <element signature="e#9763#10014#0" expanded="false" />
+            <element signature="e#10082#10318#0" expanded="false" />
+            <element signature="e#10413#11477#0" expanded="false" />
+            <element signature="e#11541#11777#0" expanded="false" />
+            <element signature="e#11846#12097#0" expanded="false" />
+            <element signature="e#12154#12349#0" expanded="false" />
+            <element signature="e#12399#13007#0" expanded="false" />
+            <element signature="e#13048#15085#0" expanded="false" />
+            <element signature="e#15587#15792#0" expanded="false" />
+            <element signature="e#15871#17172#0" expanded="false" />
+            <element signature="e#17254#18567#0" expanded="false" />
+            <element signature="e#18694#18988#0" expanded="false" />
+            <element signature="e#19175#19488#0" expanded="false" />
+            <element signature="e#19680#20050#0" expanded="false" />
+            <element signature="e#20152#20348#0" expanded="false" />
+            <element signature="e#20432#21923#0" expanded="false" />
+            <element signature="e#22002#22365#0" expanded="false" />
+            <element signature="e#22443#22800#0" expanded="false" />
+            <element signature="e#22876#23245#0" expanded="false" />
+            <element signature="e#23320#23683#0" expanded="false" />
+            <element signature="e#23763#27152#0" expanded="false" />
+            <element signature="e#27281#28079#0" expanded="false" />
+            <element signature="e#28154#28601#0" expanded="false" />
+            <element signature="e#28686#30169#0" expanded="false" />
+            <element signature="e#30245#31497#0" expanded="false" />
+            <element signature="e#31570#32052#0" expanded="false" />
+            <element signature="e#32130#32389#0" expanded="false" />
+            <element signature="e#32469#32837#0" expanded="false" />
+            <element signature="e#32924#33626#0" expanded="false" />
+            <element signature="e#33678#34736#0" expanded="false" />
+            <element signature="e#34800#36154#0" expanded="false" />
+            <element signature="e#36197#36686#0" expanded="false" />
+            <element signature="e#36733#37587#0" expanded="false" />
+            <element signature="e#37635#42220#0" expanded="false" />
+            <element signature="e#42283#43034#0" expanded="false" />
+            <element signature="e#43078#45758#0" expanded="false" />
+            <element signature="e#45798#46450#0" expanded="false" />
+            <element signature="e#46492#47501#0" expanded="false" />
+            <element signature="e#47551#47873#0" expanded="false" />
+            <element signature="e#47935#49364#0" expanded="false" />
+            <element signature="e#49432#51038#0" expanded="false" />
+            <element signature="e#51092#52755#0" expanded="false" />
+            <element signature="e#52793#53489#0" expanded="false" />
+            <element signature="e#53538#54099#0" expanded="false" />
+            <element signature="e#54295#55724#0" expanded="false" />
+            <element signature="e#55750#57519#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/jquery.validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20306">
+          <caret line="930" column="21" lean-forward="false" selection-start-line="930" selection-start-column="12" selection-end-line="930" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/duck/demo/threejs获取焦点.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1452">
@@ -469,9 +837,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1012">
           <caret line="46" column="16" lean-forward="false" selection-start-line="46" selection-start-column="16" selection-end-line="50" selection-end-column="18" />
-          <folding>
-            <element signature="e#1740#3124#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -503,9 +869,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1012">
           <caret line="46" column="16" lean-forward="false" selection-start-line="46" selection-start-column="16" selection-end-line="50" selection-end-column="18" />
-          <folding>
-            <element signature="e#1740#3124#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -661,9 +1025,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1012">
           <caret line="46" column="16" lean-forward="false" selection-start-line="46" selection-start-column="16" selection-end-line="50" selection-end-column="18" />
-          <folding>
-            <element signature="e#1740#3124#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -757,9 +1119,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1210">
           <caret line="55" column="24" lean-forward="true" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
-          <folding>
-            <element signature="e#1740#3124#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -887,19 +1247,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/jquery.validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9284">
+          <caret line="429" column="82" lean-forward="false" selection-start-line="429" selection-start-column="74" selection-end-line="429" selection-end-column="82" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/SA_validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="81" column="26" lean-forward="false" selection-start-line="81" selection-start-column="15" selection-end-line="81" selection-end-column="26" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#67#234#0" expanded="false" />
+            <element signature="e#273#353#0" expanded="false" />
+            <element signature="e#408#803#0" expanded="false" />
+            <element signature="e#840#1009#0" expanded="false" />
+            <element signature="e#1161#1372#0" expanded="false" />
+            <element signature="e#1413#1506#0" expanded="false" />
+            <element signature="e#1577#1668#0" expanded="false" />
+            <element signature="e#10412#11184#0" expanded="false" />
+            <element signature="e#11285#11618#0" expanded="false" />
+            <element signature="e#11703#11952#0" expanded="false" />
+            <element signature="e#12227#13079#0" expanded="false" />
+            <element signature="e#13190#13534#0" expanded="false" />
+            <element signature="e#13615#14716#0" expanded="false" />
+            <element signature="e#14773#14844#0" expanded="false" />
+            <element signature="e#14927#15307#0" expanded="false" />
+            <element signature="e#15380#15431#0" expanded="false" />
+            <element signature="e#15485#15539#0" expanded="false" />
+            <element signature="e#15594#15865#0" expanded="false" />
+            <element signature="e#15911#16011#0" expanded="false" />
+            <element signature="e#16098#16198#0" expanded="false" />
+            <element signature="e#16288#16376#0" expanded="false" />
+            <element signature="e#16463#16598#0" expanded="false" />
+            <element signature="e#16693#19073#0" expanded="false" />
+            <element signature="e#19152#19306#0" expanded="false" />
+            <element signature="e#19390#19620#0" expanded="false" />
+            <element signature="e#19706#19810#0" expanded="false" />
+            <element signature="e#19890#19985#0" expanded="false" />
+            <element signature="e#20095#20282#0" expanded="false" />
+            <element signature="e#20365#20705#0" expanded="false" />
+            <element signature="e#20776#22863#0" expanded="false" />
+            <element signature="e#22952#23061#0" expanded="false" />
+            <element signature="e#23110#23188#0" expanded="false" />
+            <element signature="e#23272#23740#0" expanded="false" />
+            <element signature="e#23855#24028#0" expanded="false" />
+            <element signature="e#24095#24753#0" expanded="false" />
+            <element signature="e#25124#25749#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/demo1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding>
-            <element signature="e#1740#3124#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="1826">
+          <caret line="95" column="13" lean-forward="true" selection-start-line="95" selection-start-column="13" selection-end-line="95" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SA_CS/new_SA/new_table/js/SA_table.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
+        <state relative-caret-position="-4391">
           <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="13" />
           <folding>
             <element signature="e#1644#3638#0" expanded="false" />
@@ -955,26 +1369,6 @@
             <element signature="e#53538#54099#0" expanded="false" />
             <element signature="e#54295#55724#0" expanded="false" />
             <element signature="e#55750#57519#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/SA_validate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="260" column="39" lean-forward="false" selection-start-line="260" selection-start-column="39" selection-end-line="260" selection-end-column="39" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SA_CS/validate/changshi1/jquery.validate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="420" column="33" lean-forward="false" selection-start-line="420" selection-start-column="24" selection-end-line="420" selection-end-column="33" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>

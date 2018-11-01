@@ -5,7 +5,7 @@
 */
 
 
-// *** validator.showErrors:
+// *** validator.showErrors:  显示错误提示信息
 /*
         var validator = $( "#myshowErrors" ).validate();
         validator.showErrors({
@@ -13,14 +13,14 @@
         });
 */
 
-// *** validator.setDefaults:
+// *** validator.setDefaults:  设置默认值
 /*
         $.validator.setDefaults({
             success: "校验成功！"
         });
 */
 
-// *** validator.messages/rules:
+// *** validator.messages/rules:   设置校验规则 和 校验失败提示信息
 /*
         $("#myform").validate({
           rules: {
@@ -38,20 +38,32 @@
         });
 */
 
-// *** validator.methods:
+// *** validator.methods:   重置校验方法
 /*
          $.validator.methods.email = function( value, element ) {
              return this.optional( element ) || /[a-z]+@[a-z]+\.[a-z]+/.test( value );
          }
 */
 
-// *** validator.addMethod:
+// *** validator.addMethod:     添加新的校验规则
+// ***                          添加新的校验方法也可以直接添加在最下方的 methods 和 messages 中，两者需同时添加。  已有的校验规则查看  methods 中的注释。
 /*
         $.validator.addMethod("isMobile", function(value, element) {
             return this.optional(element) || /^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/.test(value);
         }, "请正确填写您的手机号码");
 */
 
+// *** validator.hideLabel:   清空校验提示信息
+/*
+        var validator = $( "#myform" ).validate(option);
+        validator.hideLabel();
+*/
+
+// *** validator.isValid:   清空校验提示信息   返回true  校验成功   返回false   校验失败
+/*
+        var validator = $( "#myform" ).validate(option);
+        validator.isValid();
+*/
 
 (function (factory) {
     if (typeof define === "function" && define.amd) {
@@ -67,7 +79,7 @@
         SAvalidate: function (options) {
             // 验证是否已经创建该表单的校验
             let validator = $.data(this[0], "validator");
-            console.log(validator);
+            // console.log(this[0]);
             if (validator) {
                 return validator;
             }
@@ -253,19 +265,32 @@
                         // eventType = "on" + event.type.replace( /^validate/, "" ),
                         settings = validator.settings;
                     // if ( settings[ eventType ] && !$( this ).is( settings.ignore ) ) {
+                    
                     settings.onpropertychange.call(validator, this, event);
                     // }
                 }
                 
                 $(this.currentForm)
-                    .on("input propertychange", ":text", delegate);
+                    .on("input propertychange", ":text, textarea", delegate)
+                    .on("click", "select, option, [type='radio'], [type='checkbox']", delegate);
             },
             
             isValid: function () {
+                let self = this,
+                    settings = self.settings,
+                    rules = settings.rules,
+                    nameSelf = $(self.currentForm).find("[name]");
+                $.each(rules, function (key, value) {
+                    let that = nameSelf.filter("[name='" + key + "']")[0];
+                    settings.onpropertychange.call(validator, that, that.event);
+                });
+                
                 if (!this.numberOfInvalids()) {
                     return true;
                 }
+                return false;
             },
+            
             
             // 效验单个元素  有效为true  否则为false
             element: function (element) {
@@ -385,7 +410,7 @@
                 for (i = 0; this.errorList[i]; i++) {
                     error = this.errorList[i];
                     if (this.settings.highlight) {
-                        this.settings.highlight.call(this, error.element, this.settings.errorClass, this.settings.validClass);
+                        // this.settings.highlight.call(this, error.element, this.settings.errorClass, this.settings.validClass);
                     }
                     this.showLabel(error.element, error.message);
                 }
@@ -396,7 +421,7 @@
                 }
                 if (this.settings.unhighlight) {
                     for (i = 0, elements = this.validElements(); elements[i]; i++) {
-                        this.settings.unhighlight.call(this, elements[i], this.settings.errorClass, this.settings.validClass);
+                        // this.settings.unhighlight.call(this, elements[i], this.settings.errorClass, this.settings.validClass);
                     }
                 }
                 this.toHide = this.toHide.not(this.toShow);
@@ -484,7 +509,12 @@
                     
                     // 保持对要放置到DOM中的元素的引用
                     place = error;
-                    place.insertAfter(element);// 在element元素之后插入place元素
+                    
+                    // console.log(element);
+                    // element.getAttribute("name");
+                    // element.parentNode.lastChild
+                    
+                    place.insertAfter(element.parentNode.lastChild);// 在element元素之后插入place元素
                     
                     // 连接表单与错误标签的name
                     if (error.is("label")) {
@@ -511,6 +541,12 @@
                     }
                 }
                 this.toShow = this.toShow.add(error);
+            },
+            
+            // 隐藏label提示信息标签
+            hideLabel: function () {
+                let settings = this.settings;
+                $(this.currentForm).find("label").filter("." + settings.errorClass).empty();
             },
             
             // 缩减集合到label上
@@ -628,6 +664,27 @@
                 let val = this.elementValue(element);
                 return !$.validator.methods.required.call(this, val, element) && "dependency-mismatch";
             },
+    
+            multilineMethod: function (value, element, reg) {
+                let $reg = reg,
+                    textarea = value.split("\n"),
+                    flag = true,
+                    obj = {};
+                $.each(textarea, function (key, val) {
+                    if ($reg.test(val)) {
+                        if (obj[val]) {
+                            flag = false;
+                            return false;
+                        } else {
+                            obj[val] = 1;
+                        }
+                    } else {
+                        flag = false;
+                        return false;
+                    }
+                });
+                return flag;
+            }
         },
         
         addClassRules: function (className, rules) {
@@ -789,7 +846,7 @@
         methods: {
             
             // 是否必填 required：true
-            required: function (value, element, param) {
+            required: function (value, element) {
                 if (element.nodeName.toLowerCase() === "select") {
                     let val = $(element).val();
                     return val && val.length > 0;
@@ -810,9 +867,114 @@
                 return this.optional(element) || /^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/.test(value);
             },
             
-            // 字符验证，只能包含中文、英文、数字、下划线等字符。
+            // 字符验证，只能包含中文、英文、数字、下划线和短横线  且 不能以下划线和短横线开头。
             stringCheck: function (value, element) {
-                return this.optional(element) || /^[a-zA-Z0-9\u4e00-\u9fa5-_]+$/.test(value);
+                return this.optional(element) || /^[a-zA-Z0-9\u4e00-\u9fa5][-_a-zA-Z0-9\u4e00-\u9fa5]*$/.test(value);
+            },
+    
+            // 字符验证，只能包含中文、英文、数字和藏文。  param 输入"multi-line"表示可输入多行
+            stringCheck2: function (value, element, param) {
+                let reg = /^[0-9a-zA-Z\u4e00-\u9fa5\u0f00-\u0fff]+$/;
+                if (param === "multi-line") {
+                    let flag = this.multilineMethod(value, element, reg);
+                    return this.optional(element) || flag;
+                } else {
+                    return this.optional(element) || reg.test(value);
+                }
+            },
+    
+            // textarea多行输入可输入的行数   [0, 10]
+            multiline: function (value, element, param) {
+                let length = value.split("\n").length;
+                return this.optional(element) || (length >= param[0] && length <= param[1]);
+            },
+    
+            // textarea文本框不可换行
+            notMultiline: function (value, element) {
+                return this.optional(element) || !(/['\n\r]/.test(value));
+            },
+            
+            // hh:mm-hh:mm  时间范围  param 输入"multi-line"表示可输入多行
+            timeRange: function (value, element, param) {
+                let reg = /^([0-1][0-9]|2[0-3]):([0-5][0-9])-([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
+                if (param === "multi-line") {
+                    let textarea = value.split("\n"),
+                        flag = true,
+                        obj = {};
+                    $.each(textarea, function (key, val) {
+                        if (reg.test(val)) {
+                            let arr = value.split("-");
+                            if (parseInt(arr[0].replace(":", "")) >= parseInt(arr[1].replace(":", ""))) {
+                                flag = false;
+                                return false;
+                            } else if (obj[val]) {
+                                flag = false;
+                                return false;
+                            } else {
+                                obj[val] = 1;
+                            }
+                        } else {
+                            flag = false;
+                            return false;
+                        }
+                    });
+                    return this.optional(element) || flag;
+                } else {
+                    if (reg.test(value)) {
+                        let arr = value.split("-");
+                        return this.optional(element) || parseInt(arr[0].replace(":", "")) < parseInt(arr[1].replace(":", ""));
+                    } else {
+                        return this.optional(element) || reg.test(value);
+                    }
+                }
+            },
+            
+            // ip校验         param 输入"multi-line"表示可输入多行
+            ip: function (value, element, param) {
+                let reg = /^([1-9]|[1-9]\d|1\d{2}|2[0-1]\d|22[0-3])(\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])){2}(\.([1-9]|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5]))$/;
+                if (param === "multi-line") {
+                    let flag = this.multilineMethod(value, element, reg);
+                    return this.optional(element) || flag;
+                } else {
+                    return this.optional(element) || reg.test(value);
+                }
+            },
+    
+            // 文件名称         param 输入"multi-line"表示可输入多行
+            fileName: function (value, element, param) {
+                let reg = /(^[A-Za-z]{1}:\/|^\/)([\w]*\/)*\w+(\.{1}[a-zA-Z]+)?$/;
+                if (param === "multi-line") {
+                    let flag = this.multilineMethod(value, element, reg);
+                    return this.optional(element) || flag;
+                } else {
+                    return this.optional(element) || reg.test(value);
+                }
+            },
+    
+            // 端口号         param 输入"multi-line"表示可输入多行
+            port: function (value, element, param) {
+                let reg = /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{4}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/;
+                if (param === "multi-line") {
+                    let flag = this.multilineMethod(value, element, reg);
+                    return this.optional(element) || flag;
+                } else {
+                    return this.optional(element) || reg.test(value);
+                }
+            },
+    
+            // 描述信息  不能包含一些特殊字符
+            desc: function (value, element) {
+                return this.optional(element) || /^[0-9a-zA-Z\u4e00-\u9fa5，,。.？?！：:；;"'“”‘’、—（）{}\[\]【】()_\-][_0-9a-zA-Z\u4e00-\u9fa5，,。.？?！：:；;"'“”‘’、—（）{}\[\]【】()\-]*$/.test(value);
+            },
+    
+            // User-Agent 的格式校验
+            userAgent: function (value, element) {
+                return this.optional(element) || /^([a-zA-Z]+\/+[0-9/.]+\s*[0-9a-zA-Z;,()\s/.]*?)+$/.test(value);
+            },
+    
+            // 不允许输入的特殊字符
+            specialChar: function (value, element) {
+                return this.optional(element) || !(/['|<>"‘’{【】}（）—？:、!+=\[\]“”@#$%^&*~`￥\\]/.test(value));
             },
             
             // 有效网址 url: true
@@ -883,7 +1045,7 @@
                     });
                 }
                 return value === target.val();
-            },
+            }
         },
         
         // 提示信息
@@ -899,6 +1061,16 @@
             creditcard: "请输入有效的信用卡号码",
             equalTo: "你的输入不相同",
             stringCheck: "包含特殊字符",
+            stringCheck2: "包含特殊字符",
+            multiline: $.validator.format("最多可以输入 {1} 行"),
+            notMultiline: "不可换行",
+            timeRange: "请输入hh:mm-hh:mm的有效时间范围",
+            ip: "请输入正确有效的IP",
+            fileName: "请输入正确的文件名称",
+            port: "请输入正确有效的端口",
+            desc: "包含特殊字符",
+            userAgent: "User-Agent格式错误",
+            specialChar: "包含特殊字符",
             extension: "请输入有效的后缀",
             maxlength: $.validator.format("最多可以输入 {0} 个字符"),
             minlength: $.validator.format("最少要输入 {0} 个字符"),
@@ -906,9 +1078,7 @@
             range: $.validator.format("请输入范围在 {0} 到 {1} 之间的数值"),
             max: $.validator.format("请输入不大于 {0} 的数值"),
             min: $.validator.format("请输入不小于 {0} 的数值")
-        },
-        
-        
+        }
     });
     
     return $;
